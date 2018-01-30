@@ -1,17 +1,8 @@
 #include <QApplication>
-#include <QTranslator>
-#include "editor.h"
+#include "windows_panels.h"
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    QTranslator translator;
-
-    translator.load("shmupgine-editor_en");
-    app.installTranslator(&translator);
-
-    editor *game_editor= new editor;
-    game_editor->show();
-    attribute_widget a;
-    a.show();
+    w_editor::Instance()->show();
     return app.exec();
 }
