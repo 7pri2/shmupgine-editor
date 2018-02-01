@@ -57,6 +57,8 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
     lay_groupbox->addLayout(lay_groups_btn);
     lay_groupbox->addWidget(cb_out_of_bounds);
 
+    setFixedHeight(sizeHint().height());
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */
@@ -87,7 +89,7 @@ void attr_destructor::add_entities() {
 
 void attr_destructor::add_groups() {
     QString group = p_groups::Instance()->select_group();
-    if(group != "")
+    if(!group.isEmpty())
         sm_groups->appendRow(new QStandardItem(group));
 }
 

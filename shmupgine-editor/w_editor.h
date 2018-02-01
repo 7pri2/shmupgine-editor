@@ -7,6 +7,11 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QSplitter>
+#include <QDockWidget>
+
 #include <QHBoxLayout>
 #include "singleton.h"
 
@@ -52,9 +57,14 @@ private:
     QAction*    a_build;
     QAction*    a_build_and_run;
 
-    // Layouts
-    QWidget*        central_widget;
-    QHBoxLayout*    lyt_mainlayout;
+    // GraphicScene
+    QGraphicsScene* gs_scene;
+    QGraphicsView*  gv_graphicsview;
+    QWidget*        gv_widget;
+    QHBoxLayout*    gv_layout;
+
+    QDockWidget*    dock_entities;
+    QDockWidget*    dock_attributes;
 };
 
 #endif // W_EDITOR_H

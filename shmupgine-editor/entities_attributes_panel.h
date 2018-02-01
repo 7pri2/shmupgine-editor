@@ -1,15 +1,15 @@
 #ifndef ENTITIES_ATTRIBUTES_PANEL_H
 #define ENTITIES_ATTRIBUTES_PANEL_H
 
-#include <QWidget>
-#include <QMenu>
-#include <QAction>
-#include <QPushButton>
-#include <QListView>
 #include <QStandardItemModel>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QSplitter>
+#include <QScrollArea>
+#include <QListView>
+#include <QAction>
+#include <QWidget>
+#include <QMenu>
 #include <list>
 
 class attribute;
@@ -21,6 +21,8 @@ public:
     ~entities_attributes_panel();
 
     QString select_entity();
+    QWidget*    get_entities_panel();
+    QWidget*    get_attributes_panel();
 
 public slots:
     // ATTRIBUTES
@@ -52,6 +54,8 @@ protected:
     int entity_max_id;
 
     // ATTRIBUTES
+    QScrollArea*    scroll_area;
+
     void add_attribute(attribute* attr);
     void add_attribute(int id, attribute* attr); // pour new_entity()
 
@@ -69,10 +73,6 @@ protected:
     QAction*    a_spawner;
 
     std::list<attribute*>   attr_list;
-
-    // MAINWIDGET
-    QSplitter*      s_splitter;
-    QHBoxLayout*    lay_mainlayout;
 };
 
 #endif // ENTITIES_ATTRIBUTES_PANEL_H

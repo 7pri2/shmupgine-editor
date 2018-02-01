@@ -39,6 +39,8 @@ attr_properties::attr_properties(entities_attributes_panel* container) : attribu
     lay_coord->addWidget(le_y);
     lay_groupbox->addLayout(lay_coord);
 
+    setFixedHeight(sizeHint().height());
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */

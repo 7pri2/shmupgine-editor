@@ -20,6 +20,11 @@ public:
 
 private slots:
 
+private slots:
+    void    load_profile();
+    void    add_group();
+    void    remove_group();
+
 private:
     QLabel*             lbl_groups;
     QListView*          lv_groups;

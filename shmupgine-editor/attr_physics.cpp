@@ -49,6 +49,8 @@ attr_physics::attr_physics(entities_attributes_panel* container) : attribute(con
     lay_groupbox->addLayout(lay_angle);
     lay_groupbox->addLayout(lay_velocity);
 
+    setFixedHeight(sizeHint().height());
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */

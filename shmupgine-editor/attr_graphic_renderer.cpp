@@ -35,6 +35,8 @@ attr_graphic_renderer::attr_graphic_renderer(entities_attributes_panel* containe
     le_sprite->setReadOnly(true);
     gv_view->setMaximumHeight(MAXHEIGHT);
 
+    setFixedHeight(sizeHint().height());
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */

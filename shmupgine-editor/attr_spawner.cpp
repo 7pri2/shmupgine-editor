@@ -21,8 +21,11 @@ attr_spawner::attr_spawner(entities_attributes_panel* container) : attribute(con
     cb_autospawn                    = new QCheckBox(tr("Auto-spawn"), this);
 
     gb_box->setTitle(tr("Spawner"));
-    btn_load_entity->setMaximumWidth(48);
+    btn_load_entity->setMaximumWidth(32);
+
+    lv_groups->setModel(model_groups);
     lv_groups->setMaximumHeight(MAXHEIGHT);
+    lv_groups->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     lay_groups_btn->addWidget(btn_add_group);
     lay_groups_btn->addWidget(btn_del_group);
@@ -41,6 +44,12 @@ attr_spawner::attr_spawner(entities_attributes_panel* container) : attribute(con
     lay_groupbox->addLayout(lay_groups_btn);
     lay_groupbox->addWidget(cb_spawn_at_parents_position);
     lay_groupbox->addWidget(cb_autospawn);
+
+    setFixedHeight(sizeHint().height());
+
+    connect(btn_load_entity, SIGNAL(clicked(bool)), this, SLOT(load_profile()));
+    connect(btn_add_group, SIGNAL(clicked(bool)), this, SLOT(add_group()));
+    connect(btn_del_group, SIGNAL(clicked(bool)), this, SLOT(remove_group()));
 }
 
 attr_spawner::~attr_spawner() {
@@ -49,4 +58,18 @@ attr_spawner::~attr_spawner() {
 
 QString attr_spawner::getCode() {
 
+}
+
+void attr_spawner::load_profile() {
+    le_entity_profile->setText(p_entities_collection::Instance()->select_entity());
+}
+
+void attr_spawner::add_group() {
+    QString group = p_groups::Instance()->select_group();
+    if(!group.isEmpty())
+        model_groups->appendRow(new QStandardItem(group));
+}
+
+void attr_spawner::remove_group() {
+    model_groups->removeRow(lv_groups->currentIndex().row());
 }

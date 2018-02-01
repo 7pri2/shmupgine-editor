@@ -30,9 +30,15 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     a_build         = new QAction(tr("&Build"), this);
     a_build_and_run = new QAction(tr("Build a&nd run"), this);
 
-    // Layouts
-    lyt_mainlayout  = new QHBoxLayout(this);
-    central_widget  = new QWidget(this);
+    // Graphics Scene
+    gs_scene        = new QGraphicsScene(this);
+    gv_graphicsview = new QGraphicsView(gs_scene, this);
+    gv_layout       = new QHBoxLayout(this);
+    gv_widget       = new QWidget(this);
+
+    // Dock
+    dock_entities   = new QDockWidget(tr("Entities"), this);
+    dock_attributes = new QDockWidget(tr("Attributes"), this);
 
     /* * * * * * * * *
      * SETUP MENUBAR *
@@ -69,10 +75,19 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
      * WINDOW MANGEMENT  *
      * * * * * * * * * * */
 
+    gv_layout->addWidget(gv_graphicsview);
+    gv_widget->setLayout(gv_layout);
+
+    dock_entities->setWidget(p_entities_editor::Instance()->get_entities_panel());
+    dock_attributes->setWidget(p_entities_editor::Instance()->get_attributes_panel());
+
+    dock_entities->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+    dock_attributes->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+
+    this->addDockWidget(Qt::RightDockWidgetArea, dock_entities);
+    this->addDockWidget(Qt::RightDockWidgetArea, dock_attributes);
     this->setMinimumSize(WIDTH, HEIGHT);
-    lyt_mainlayout->addWidget(p_entities_editor::Instance());
-    central_widget->setLayout(lyt_mainlayout);
-    this->setCentralWidget(central_widget);
+    this->setCentralWidget(gv_widget);
 
     /* * * * * * * *
      * CONNECTIONS *

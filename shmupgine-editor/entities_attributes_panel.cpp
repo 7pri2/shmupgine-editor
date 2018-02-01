@@ -18,6 +18,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     entities_model      = new QStandardItemModel(entities_widget);
 
     // Attributes
+    scroll_area         = new QScrollArea(this);
     attributes_widget   = new QWidget(this);
     btn_new_attribute   = new QPushButton(tr("+"), attributes_widget);
     lay_attr_layout     = new QVBoxLayout(attributes_widget);
@@ -30,10 +31,6 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     a_controls          = new QAction(tr("&controls"), attributes_widget);
     a_spawner           = new QAction(tr("&Spawner"), attributes_widget);
 
-    // Main window
-    lay_mainlayout      = new QHBoxLayout(this);
-    s_splitter          = new QSplitter(this);
-
     /* * * * * * * * * * *
      *  MENU MANAGEMENT  *
      * * * * * * * * * * */
@@ -44,27 +41,25 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     m_choose_attribute->addAction(a_controls);
     m_choose_attribute->addAction(a_spawner);
 
-    entity_max_id = 0;
-    lv_list->setModel(entities_model);
-
-    /* * * * * * * *
-     *   LAYOUTS   *
-     * * * * * * * */
-
     // Entities
-    lay_entities_layout->addWidget(lv_list);
-    lay_entities_layout->addLayout(lay_btn);
     lay_btn->addWidget(btn_new_entity);
     lay_btn->addWidget(btn_delete_entity);
+    lay_entities_layout->addWidget(lv_list);
+    lay_entities_layout->addLayout(lay_btn);
+    entities_widget->setLayout(lay_entities_layout);
+    entity_max_id = 0;
+    lv_list->setModel(entities_model);
 
     // Attributes
     lay_attr_layout->addWidget(btn_new_attribute);
     lay_attr_layout->setAlignment(Qt::AlignTop);
+    attributes_widget->setLayout(lay_attr_layout);
 
-    // Window
-    s_splitter->addWidget(entities_widget);
-    s_splitter->addWidget(attributes_widget);
-    lay_mainlayout->addWidget(s_splitter);
+    scroll_area->setWidget(attributes_widget);
+    scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scroll_area->setWidgetResizable(true);
+    scroll_area->setMinimumWidth(250);
+
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -152,4 +147,12 @@ QString entities_attributes_panel::select_entity() {
     } else {
         return "";
     }
+}
+
+QWidget* entities_attributes_panel::get_entities_panel() {
+    return entities_widget;
+}
+
+QWidget* entities_attributes_panel::get_attributes_panel() {
+    return scroll_area;
 }
