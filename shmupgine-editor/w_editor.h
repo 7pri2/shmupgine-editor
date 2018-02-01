@@ -15,8 +15,8 @@
 #include <QHBoxLayout>
 #include "singleton.h"
 
-#define WIDTH   800
-#define HEIGHT  400
+#define WIDTH   720
+#define HEIGHT  480
 
 class w_editor : public QMainWindow, public Singleton<w_editor> {
     Q_OBJECT

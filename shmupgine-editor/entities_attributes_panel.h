@@ -23,6 +23,7 @@ public:
     QString select_entity();
     QWidget*    get_entities_panel();
     QWidget*    get_attributes_panel();
+    bool        check_entity(QString entity);
 
 public slots:
     // ATTRIBUTES

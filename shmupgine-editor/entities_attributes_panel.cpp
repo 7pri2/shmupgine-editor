@@ -89,7 +89,7 @@ void entities_attributes_panel::remove_entity() {
 
 void entities_attributes_panel::new_entity() {
     entity_max_id += 1;
-    QStandardItem* item = new QStandardItem(QString(QObject::tr("entity"))+QString::number(entity_max_id));
+    QStandardItem* item = new QStandardItem(QString(tr("entity"))+QString::number(entity_max_id));
     item->appendRow(new QStandardItem(QString::number(entity_max_id)));
     entities_model->appendRow(item);
     add_attribute(entity_max_id, new attr_properties(this));
@@ -155,4 +155,8 @@ QWidget* entities_attributes_panel::get_entities_panel() {
 
 QWidget* entities_attributes_panel::get_attributes_panel() {
     return scroll_area;
+}
+
+bool entities_attributes_panel::check_entity(QString entity) {
+    return !entities_model->findItems(entity).isEmpty();
 }
