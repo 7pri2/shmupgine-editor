@@ -4,6 +4,7 @@
 #include <QListView>
 #include <QPushButton>
 #include <QStandardItemModel>
+#include "windows_panels.h"
 #include "attribute.h"
 
 class attr_destructor : public attribute {
@@ -18,6 +19,9 @@ public slots:
 
 private slots:
     void removeEntity();
+    void add_entities();
+    void remove_group();
+    void add_groups();
 
 private:
     QListView*  lv_entities;

@@ -7,5 +7,6 @@
 #include "attr_destructor.h"
 #include "attr_graphic_renderer.h"
 #include "attr_physics.h"
+#include "attr_spawner.h"
 
 #endif // ATTRIBUTES_H

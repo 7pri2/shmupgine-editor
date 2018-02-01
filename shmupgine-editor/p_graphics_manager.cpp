@@ -5,7 +5,6 @@ p_graphics_manager::p_graphics_manager(QWidget *parent) : QWidget(parent) {
      * MEMORY ALLOCATION *
      * * * * * * * * * * */
 
-    //select  = new select_window(tr("Select a picture"), pictures_model);
 
     lv_pictures_view    = new QListView(this);
 
@@ -84,7 +83,6 @@ p_graphics_manager::p_graphics_manager(QWidget *parent) : QWidget(parent) {
     connect(le_width, SIGNAL(textEdited(QString)), this, SLOT(update_model()));
     connect(le_height, SIGNAL(textEdited(QString)), this, SLOT(update_model()));
     connect(btn_remove, SIGNAL(clicked()), this, SLOT(delete_picture()));
-    //connect(select->get_select_btn(), SIGNAL(clicked(bool)), select, SLOT(close()));
 }
 
 p_graphics_manager::~p_graphics_manager() {
@@ -157,4 +155,10 @@ void p_graphics_manager::append_picture(QString filename) {
 }
 
 QString p_graphics_manager::select_picture() {
+    select_window *select  = new select_window(tr("Select a picture"), pictures_model);
+    if(select->exec()) {
+        return select->get_selected_item(PIC_PATH);
+    } else {
+        return "";
+    }
 }

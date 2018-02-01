@@ -12,13 +12,15 @@
 #include <QSplitter>
 #include <list>
 
-#include "attributes.h"
+class attribute;
 
 class entities_attributes_panel : public QWidget {
     Q_OBJECT
 public:
     entities_attributes_panel(QWidget* parent = 0);
     ~entities_attributes_panel();
+
+    QString select_entity();
 
 public slots:
     // ATTRIBUTES
@@ -64,6 +66,7 @@ protected:
     QAction*    a_graphic_renderer;
     QAction*    a_destructor;
     QAction*    a_controls;
+    QAction*    a_spawner;
 
     std::list<attribute*>   attr_list;
 

@@ -12,6 +12,8 @@
 #define CROSS_1 "\u2A09"
 #define CROSS_2 "\u2717"
 
+#define MAXHEIGHT  125
+
 class entities_attributes_panel;
 
 class attribute : public QWidget {
@@ -37,7 +39,6 @@ protected:
 
 private:
     entities_attributes_panel*  container;
-
     QVBoxLayout*    lay_mainlayout;
 };
 

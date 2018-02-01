@@ -7,8 +7,11 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QMainWindow>
+#include <QHBoxLayout>
 #include "singleton.h"
-#include "windows_panels.h"
+
+#define WIDTH   800
+#define HEIGHT  400
 
 class w_editor : public QMainWindow, public Singleton<w_editor> {
     Q_OBJECT
@@ -42,11 +45,16 @@ private:
     QMenu*      m_ressources;
     QAction*    a_graphics;
     QAction*    a_entities_collection;
+    QAction*    a_groups;
     // Build
     QMenu*      m_build;
     QAction*    a_run;
     QAction*    a_build;
     QAction*    a_build_and_run;
+
+    // Layouts
+    QWidget*        central_widget;
+    QHBoxLayout*    lyt_mainlayout;
 };
 
 #endif // W_EDITOR_H

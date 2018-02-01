@@ -3,6 +3,7 @@
 
 #include "singleton.h"
 #include "entities_attributes_panel.h"
+#include "select_window.h"
 
 class p_entities_collection : public entities_attributes_panel, public Singleton<p_entities_collection> {
     Q_OBJECT

@@ -1,4 +1,5 @@
 #include "entities_attributes_panel.h"
+#include "attributes.h"
 
 entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(parent) {
     /* * * * * * * *
@@ -27,6 +28,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     a_graphic_renderer  = new QAction(tr("&graphic renderer"), attributes_widget);
     a_destructor        = new QAction(tr("&destructor"), attributes_widget);
     a_controls          = new QAction(tr("&controls"), attributes_widget);
+    a_spawner           = new QAction(tr("&Spawner"), attributes_widget);
 
     // Main window
     lay_mainlayout      = new QHBoxLayout(this);
@@ -40,6 +42,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     m_choose_attribute->addAction(a_graphic_renderer);
     m_choose_attribute->addAction(a_destructor);
     m_choose_attribute->addAction(a_controls);
+    m_choose_attribute->addAction(a_spawner);
 
     entity_max_id = 0;
     lv_list->setModel(entities_model);
@@ -129,6 +132,8 @@ void entities_attributes_panel::handle_actions(QAction *a) {
         add_attribute(new attr_graphic_renderer(this));
     else if(a == a_physics)
         add_attribute(new attr_physics(this));
+    else if(a == a_spawner)
+        add_attribute(new attr_spawner(this));
 }
 
 void entities_attributes_panel::showMenu() {
@@ -138,4 +143,13 @@ void entities_attributes_panel::showMenu() {
 
 void entities_attributes_panel::remove_attribute(attribute *attr) {
     attr_list.remove(attr);
+}
+
+QString entities_attributes_panel::select_entity() {
+    select_window *select  = new select_window(tr("Select an entity"), entities_model);
+    if(select->exec()) {
+        return select->get_selected_item(-1); // We want the name
+    } else {
+        return "";
+    }
 }

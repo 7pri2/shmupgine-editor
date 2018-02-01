@@ -1,4 +1,5 @@
 #include "w_editor.h"
+#include "windows_panels.h"
 
 w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     /* * * * * * * * * * *
@@ -22,11 +23,16 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     m_ressources            = new QMenu(tr("Ressources"), this);
     a_graphics              = new QAction(tr("&Graphics manager"), this);
     a_entities_collection   = new QAction(tr("&Entities collection"), this);
+    a_groups                = new QAction(tr("&Groups"), this);
     // Build
     m_build         = new QMenu(tr("Build"), this);
     a_run           = new QAction(tr("&Run"), this);
     a_build         = new QAction(tr("&Build"), this);
     a_build_and_run = new QAction(tr("Build a&nd run"), this);
+
+    // Layouts
+    lyt_mainlayout  = new QHBoxLayout(this);
+    central_widget  = new QWidget(this);
 
     /* * * * * * * * *
      * SETUP MENUBAR *
@@ -52,11 +58,21 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     mb_menuBar->addMenu(m_ressources);
     m_ressources->addAction(a_graphics);
     m_ressources->addAction(a_entities_collection);
+    m_ressources->addAction(a_groups);
     // Build
     mb_menuBar->addMenu(m_build);
     m_build->addAction(a_run);
     m_build->addAction(a_build);
     m_build->addAction(a_build_and_run);
+
+    /* * * * * * * * * * *
+     * WINDOW MANGEMENT  *
+     * * * * * * * * * * */
+
+    this->setMinimumSize(WIDTH, HEIGHT);
+    lyt_mainlayout->addWidget(p_entities_editor::Instance());
+    central_widget->setLayout(lyt_mainlayout);
+    this->setCentralWidget(central_widget);
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -84,8 +100,10 @@ void w_editor::handle_file_choice(QAction *a) {
 
 void w_editor::handle_ressources_choice(QAction *a) {
     if(a == a_graphics)
-        p_graphics_manager::Instance()->show();
+        w_ressources::Instance()->show_tab(graphics_manager);
     else if(a == a_entities_collection)
-        p_entities_collection::Instance()->show();
+        w_ressources::Instance()->show_tab(entities_collection);
+    else if(a == a_groups)
+        w_ressources::Instance()->show_tab(groups);
 
 }

@@ -73,8 +73,6 @@ private:
     QPushButton*    btn_open;
     QPushButton*    btn_remove;
 
-    //select_window*  select;
-
     QStandardItemModel* pictures_model;
     QModelIndex         current_selection;
 };

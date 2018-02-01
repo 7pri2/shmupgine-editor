@@ -33,6 +33,7 @@ attr_graphic_renderer::attr_graphic_renderer(entities_attributes_panel* containe
      * * * * * * * * * * * * * */
 
     le_sprite->setReadOnly(true);
+    gv_view->setMaximumHeight(MAXHEIGHT);
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -46,13 +47,14 @@ attr_graphic_renderer::~attr_graphic_renderer() {
 }
 
 void attr_graphic_renderer::selectSprite() {
-    QString sprite = w_graphics_manager::Instance()->select_picture();
-    le_sprite->setText(sprite);/*
-    pm_picture->load(project_data::instance().get_picture_path(le_sprite->text()));
-    gs_scene->clear();
-    gs_scene->setSceneRect(0, 0, pm_picture->width(), pm_picture->height());
-    gs_scene->addItem(new QGraphicsPixmapItem(*pm_picture));
-    project_data::instance().update_entity_pixmap(project_data::instance().current_entity_id, pm_picture);*/
+    QString sprite = p_graphics_manager::Instance()->select_picture();
+    le_sprite->setText(sprite);
+    if(sprite != "") {
+        pm_picture->load(sprite);
+        gs_scene->clear();
+        gs_scene->setSceneRect(0, 0, pm_picture->width(), pm_picture->height());
+        gs_scene->addItem(new QGraphicsPixmapItem(*pm_picture));
+    }
 }
 
 QString attr_graphic_renderer::getCode() {

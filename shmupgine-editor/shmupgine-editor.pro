@@ -13,7 +13,11 @@ SOURCES += \
     attr_physics.cpp \
     select_window.cpp \
     p_graphics_manager.cpp \
-    p_entities_collection.cpp
+    p_entities_collection.cpp \
+    p_entities_editor.cpp \
+    w_ressources.cpp \
+    attr_spawner.cpp \
+    p_groups.cpp
 
 HEADERS += \
     project_data.h \
@@ -33,6 +37,10 @@ HEADERS += \
     select_window.h \
     w_entities_collection.h \
     p_graphics_manager.h \
-    p_entities_collection.h
+    p_entities_collection.h \
+    p_entities_editor.h \
+    w_ressources.h \
+    attr_spawner.h \
+    p_groups.h
 
 QT += widgets

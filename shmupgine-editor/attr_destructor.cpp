@@ -34,6 +34,9 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
     lv_entities->setModel(sm_entities);
     lv_groups->setModel(sm_groups);
 
+    lv_entities->setMaximumHeight(MAXHEIGHT);
+    lv_groups->setMaximumHeight(MAXHEIGHT);
+
     gb_box->setTitle(tr("Destructor"));
 
     /* * * * * * * *
@@ -58,8 +61,10 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
      * CONNECTIONS *
      * * * * * * * */
 
-    connect(btn_add_entity, SIGNAL(clicked()), this, SLOT(open_select_entity()));
+    connect(btn_add_entity, SIGNAL(clicked()), this, SLOT(add_entities()));
     connect(btn_remove_entity, SIGNAL(clicked()), this, SLOT(removeEntity()));
+    connect(btn_add_group, SIGNAL(clicked(bool)), this, SLOT(add_groups()));
+    connect(btn_remove_group, SIGNAL(clicked(bool)), this, SLOT(remove_group()));
 }
 
 attr_destructor::~attr_destructor() {
@@ -72,4 +77,20 @@ QString attr_destructor::getCode() {
 
 void attr_destructor::removeEntity() {
     sm_entities->removeRow(lv_entities->currentIndex().row());
+}
+
+void attr_destructor::add_entities() {
+    QString entity = p_entities_editor::Instance()->select_entity();
+    if(entity != "")
+        sm_entities->appendRow(new QStandardItem(entity));
+}
+
+void attr_destructor::add_groups() {
+    QString group = p_groups::Instance()->select_group();
+    if(group != "")
+        sm_groups->appendRow(new QStandardItem(group));
+}
+
+void attr_destructor::remove_group() {
+    sm_groups->removeRow(lv_groups->currentIndex().row());
 }

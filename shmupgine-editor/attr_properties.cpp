@@ -42,9 +42,6 @@ attr_properties::attr_properties(entities_attributes_panel* container) : attribu
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */
-
-    connect(le_x, SIGNAL(textChanged(QString)), this, SLOT(update_scene()));
-    connect(le_y, SIGNAL(textChanged(QString)), this, SLOT(update_scene()));
 }
 
 attr_properties::~attr_properties() {
