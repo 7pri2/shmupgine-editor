@@ -1,6 +1,6 @@
 #include "select_window.h"
 
-select_window::select_window(QString title, QStandardItemModel* model) : QWidget() {
+select_window::select_window(QString title, QStandardItemModel* model) : QDialog() {
     /* * * * * * * * * * *
      * MEMORY ALLOCATION *
      * * * * * * * * * * */
@@ -35,8 +35,12 @@ select_window::select_window(QString title, QStandardItemModel* model) : QWidget
      * CONNECTIONS *
      * * * * * * * */
 
-    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(close()));
+    btn_ok->setDefault(true);
+
+    connect(btn_cancel, SIGNAL(clicked()), this, SLOT(reject()));
     connect(listview, SIGNAL(clicked(QModelIndex)), this, SLOT(item_selected()));
+    connect(btn_ok, SIGNAL(clicked(bool)), this, SLOT(accept()));
+    connect(listview, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
 }
 
 select_window ::~select_window () {}
@@ -45,10 +49,9 @@ void select_window ::item_selected() {
     btn_ok->setEnabled(true);
 }
 
-QString select_window ::get_selected_item() {
-    return listview->currentIndex().data().toString();
-}
-
-QPushButton* select_window ::get_select_btn() {
-    return btn_ok;
+QString select_window ::get_selected_item(int row) {
+    if(row == -1)
+        return listview->currentIndex().data().toString();
+    else
+        return listview->currentIndex().child(row,0).data().toString();
 }
