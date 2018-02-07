@@ -52,8 +52,6 @@ protected:
     QStandardItemModel* entities_model;
     QModelIndex         current_entity;
 
-    int entity_max_id;
-
     // ATTRIBUTES
     QScrollArea*    scroll_area;
 

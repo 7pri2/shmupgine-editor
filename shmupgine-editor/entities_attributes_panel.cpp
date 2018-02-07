@@ -47,7 +47,6 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     lay_entities_layout->addWidget(lv_list);
     lay_entities_layout->addLayout(lay_btn);
     entities_widget->setLayout(lay_entities_layout);
-    entity_max_id = 0;
     lv_list->setModel(entities_model);
 
     // Attributes
@@ -70,6 +69,8 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     connect(btn_delete_entity, SIGNAL(clicked()), this, SLOT(remove_entity()));
     connect(btn_new_entity, SIGNAL(clicked()), this, SLOT(new_entity()));
     connect(m_choose_attribute, SIGNAL(triggered(QAction*)), this, SLOT(handle_actions(QAction*)));
+
+    update_what_is_visible();
 }
 
 entities_attributes_panel::~entities_attributes_panel() {
@@ -88,11 +89,11 @@ void entities_attributes_panel::remove_entity() {
 }
 
 void entities_attributes_panel::new_entity() {
-    entity_max_id += 1;
-    QStandardItem* item = new QStandardItem(QString(tr("entity"))+QString::number(entity_max_id));
-    item->appendRow(new QStandardItem(QString::number(entity_max_id)));
+    project_data::Instance()->entity_max_id += 1;
+    QStandardItem* item = new QStandardItem(QString(tr("entity"))+QString::number(project_data::Instance()->entity_max_id));
+    item->appendRow(new QStandardItem(QString::number(project_data::Instance()->entity_max_id)));
     entities_model->appendRow(item);
-    add_attribute(entity_max_id, new attr_properties(this));
+    add_attribute(project_data::Instance()->entity_max_id, new attr_properties(this));
 }
 
 void entities_attributes_panel::update_what_is_visible() {
@@ -100,6 +101,7 @@ void entities_attributes_panel::update_what_is_visible() {
     for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it) {
         (*it)->setVisible((*it)->getId_parent() == id);
     }
+    btn_new_attribute->setEnabled(lv_list->currentIndex().row() != -1);
 }
 
 void entities_attributes_panel::add_attribute(attribute *attr) {
