@@ -115,6 +115,7 @@ w_new_project::w_new_project(QWidget *parent) : QWidget(parent) {
     connect(btn_create, SIGNAL(clicked(bool)), this, SLOT(create_new_project()));
 
     switch_create_btn_state();
+    refill_fields();
 }
 
 w_new_project::~w_new_project() {
@@ -146,4 +147,13 @@ void w_new_project::create_new_project() {
     project_data::Instance()->prj_config[ENGINE_PATH] = le_engine->text();
     project_data::Instance()->prj_config[MAKE_PATH] = le_make->text();
     projectdir.mkpath(le_working_dir->text()+le_name->text());
+}
+
+void w_new_project::refill_fields() {
+    le_name->setText(project_data::Instance()->prj_config[NAME]);
+    le_compiler->setText(project_data::Instance()->prj_config[COMPILER_PATH]);
+    le_compiler_flags->setText(project_data::Instance()->prj_config[COMPILER_FLAGS]);
+    le_engine->setText(project_data::Instance()->prj_config[ENGINE_PATH]);
+    le_make->setText(project_data::Instance()->prj_config[MAKE_PATH]);
+    le_working_dir->setText(project_data::Instance()->prj_config[WORKING_DIR]);
 }

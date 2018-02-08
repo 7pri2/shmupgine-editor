@@ -162,3 +162,14 @@ QString p_graphics_manager::select_picture() {
         return "";
     }
 }
+
+QString p_graphics_manager::getCode() {
+    QString code;
+    for(int i = 0; i < pictures_model->rowCount(); ++i)
+        code += QString("\tgmanager::instance().new_texture(\"")
+                + pictures_model->index(i, 0).data().toString() + QString("\", \"")
+                + pictures_model->index(i, 0).child(PIC_PATH, 0).data().toString() + QString("\", ")
+                + pictures_model->index(i, 0).child(PIC_WIDTH, 0).data().toString() + QString(", ")
+                + pictures_model->index(i, 0).child(PIC_HEIGHT, 0).data().toString() + QString(");\n");
+    return code;
+}

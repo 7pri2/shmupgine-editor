@@ -162,3 +162,25 @@ QWidget* entities_attributes_panel::get_attributes_panel() {
 bool entities_attributes_panel::check_entity(QString entity) {
     return !entities_model->findItems(entity).isEmpty();
 }
+
+QString entities_attributes_panel::get_entity_name(int id) {
+    for(int i = 0; i < entities_model->rowCount(); ++i)
+        if(entities_model->item(i)->index().child(0,0).data().toInt() == id) {
+            return entities_model->item(i)->index().data().toString();
+        }
+    return "";
+}
+
+QString entities_attributes_panel::getCode() {
+    QString code;
+    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
+        code += (*it)->getCode();
+    return code;
+}
+
+QStringList entities_attributes_panel::get_entities_names() {
+    QStringList sl;
+    for(int i = 0; i < entities_model->rowCount(); ++i)
+        sl.append(entities_model->item(i)->index().data().toString());
+    return sl;
+}

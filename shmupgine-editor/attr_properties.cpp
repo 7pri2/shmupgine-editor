@@ -1,4 +1,5 @@
 #include "attr_properties.h"
+#include "entities_attributes_panel.h"
 
 attr_properties::attr_properties(entities_attributes_panel* container) : attribute(container) {
     /* * * * * * * *
@@ -51,7 +52,12 @@ attr_properties::~attr_properties() {
 }
 
 QString attr_properties::getCode() {
-
+    QString code;
+    code += QString("\tentity* ") + container->get_entity_name(id_parent) + QString(" = new entity");
+    if(le_x->text().toInt() != 0 || le_y->text().toInt() != 0)
+        code += QString("(sf::Vector2f(") + le_x->text() + QString(", ") + le_y->text() + QString("))");
+    code += QString(";\n");
+    return code;
 }
 
 int attr_properties::getPosX() {

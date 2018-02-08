@@ -54,3 +54,11 @@ void attribute::delete_attribute() {
 
 QString attribute::getCode() {
 }
+
+QString attribute::allocation(QString allocate_attr) {
+    return QString("\t") + container->get_entity_name(id_parent) + QString("->allocate_attribute<") + allocate_attr + QString(">();\n");
+}
+
+QString attribute::get(QString get_attr) {
+    return QString("\t") + container->get_entity_name(id_parent) + QString("->get_attribute<") + get_attr + QString(">()");
+}

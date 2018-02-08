@@ -24,6 +24,10 @@ public:
     QWidget*    get_entities_panel();
     QWidget*    get_attributes_panel();
     bool        check_entity(QString entity);
+    QString     get_entity_name(int id);
+    QStringList get_entities_names();
+
+    QString     getCode();
 
 public slots:
     // ATTRIBUTES

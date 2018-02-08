@@ -59,7 +59,10 @@ void attr_graphic_renderer::selectSprite() {
 }
 
 QString attr_graphic_renderer::getCode() {
-
+    QString code = attribute::allocation("graphicrenderer");
+    if(!le_sprite->text().isEmpty())
+        code += attribute::get("graphicrenderer") + QString("->set_texture(\"") + le_sprite->text() + QString("\");\n");
+    return code;
 }
 
 QPixmap attr_graphic_renderer::get_picture() {

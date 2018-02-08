@@ -1,3 +1,4 @@
+#include "entities_attributes_panel.h"
 #include "attr_controls.h"
 
 attr_controls::attr_controls(entities_attributes_panel* container) : attribute(container) {
@@ -30,5 +31,8 @@ attr_controls::~attr_controls() {
 }
 
 QString attr_controls::getCode() {
-
+    QString code = attribute::allocation("controls");
+    if(le_move_speed->text().toFloat() != 100)
+            code += attribute::get("controls") + QString("->move_speed = ") + le_move_speed->text() + QString(";\n");
+    return code;
 }

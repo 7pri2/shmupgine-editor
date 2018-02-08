@@ -1,4 +1,5 @@
 #include "attr_physics.h"
+#include "entities_attributes_panel.h"
 
 attr_physics::attr_physics(entities_attributes_panel* container) : attribute(container) {
     /* * * * * * * * * * *
@@ -62,4 +63,10 @@ attr_physics::attr_physics(entities_attributes_panel* container) : attribute(con
 attr_physics::~attr_physics() {}
 
 QString attr_physics::getCode() {
+    QString code = attribute::allocation("physics");
+    if(sb_angle->value() != 0)
+        code += attribute::get("physics") + QString("->set_force_angle(") + QString::number(sb_angle->value()) + QString(");\n");
+    if(sb_velocity->value() != 0)
+        code += attribute::get("physics") + QString("->set_velocity(") + QString::number(sb_velocity->value()) + QString(");\n");
+    return code;
 }

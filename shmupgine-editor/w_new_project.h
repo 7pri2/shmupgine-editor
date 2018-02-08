@@ -21,9 +21,10 @@ class w_new_project : public QWidget, public Singleton<w_new_project> {
 
 public:
 
-public slots:
+private slots:
     void    switch_create_btn_state();
     void    create_new_project();
+    void    refill_fields();
 
 private:
     w_new_project(const w_new_project&);

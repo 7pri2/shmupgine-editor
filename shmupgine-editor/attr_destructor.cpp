@@ -63,14 +63,10 @@ attr_destructor::attr_destructor(entities_attributes_panel* container) : attribu
      * CONNECTIONS *
      * * * * * * * */
 
-    QPushButton* btn = new QPushButton("Copy", this);
-    lay_groupbox->addWidget(btn);
-
     connect(btn_add_entity, SIGNAL(clicked()), this, SLOT(add_entities()));
     connect(btn_remove_entity, SIGNAL(clicked()), this, SLOT(removeEntity()));
     connect(btn_add_group, SIGNAL(clicked(bool)), this, SLOT(add_groups()));
     connect(btn_remove_group, SIGNAL(clicked(bool)), this, SLOT(remove_group()));
-    connect(btn, SIGNAL(clicked(bool)), this, SLOT(test()));
 }
 
 attr_destructor::~attr_destructor() {
@@ -78,7 +74,14 @@ attr_destructor::~attr_destructor() {
 }
 
 QString attr_destructor::getCode() {
-
+    QString code = attribute::allocation("destructor");
+    if(cb_out_of_bounds->isChecked())
+        code += attribute::get("destructor") + QString("->f_when_out_of_bounds = true;\n");
+    for(int i = 0; i < sm_entities->rowCount(); ++i)
+        code += attribute::get("destructor") + QString("->add_collision_entity(") + sm_entities->index(i,0).data().toString() + QString(");\n");
+    for(int i = 0; i < sm_groups->rowCount(); ++i)
+        code += attribute::get("destructor") + QString("->add_collision_group(\"") + sm_groups->index(i,0).data().toString() + QString("\");\n");
+    return code;
 }
 
 void attr_destructor::removeEntity() {

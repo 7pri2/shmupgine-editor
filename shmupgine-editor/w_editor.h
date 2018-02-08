@@ -25,8 +25,10 @@ class w_editor : public QMainWindow, public Singleton<w_editor> {
 
 public slots:
     void handle_file_choice(QAction*);
+    void handle_build_choice(QAction*);
     void handle_config_choice(QAction*);
     void handle_ressources_choice(QAction*);
+    void export_code();
 
 private:
     w_editor(const w_editor&);

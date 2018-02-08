@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_w_new_project_t {
-    QByteArrayData data[4];
-    char stringdata0[58];
+    QByteArrayData data[5];
+    char stringdata0[72];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,12 @@ static const qt_meta_stringdata_w_new_project_t qt_meta_stringdata_w_new_project
 QT_MOC_LITERAL(0, 0, 13), // "w_new_project"
 QT_MOC_LITERAL(1, 14, 23), // "switch_create_btn_state"
 QT_MOC_LITERAL(2, 38, 0), // ""
-QT_MOC_LITERAL(3, 39, 18) // "create_new_project"
+QT_MOC_LITERAL(3, 39, 18), // "create_new_project"
+QT_MOC_LITERAL(4, 58, 13) // "refill_fields"
 
     },
     "w_new_project\0switch_create_btn_state\0"
-    "\0create_new_project"
+    "\0create_new_project\0refill_fields"
 };
 #undef QT_MOC_LITERAL
 
@@ -46,7 +47,7 @@ static const uint qt_meta_data_w_new_project[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -54,10 +55,12 @@ static const uint qt_meta_data_w_new_project[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a /* Public */,
-       3,    0,   25,    2, 0x0a /* Public */,
+       1,    0,   29,    2, 0x08 /* Private */,
+       3,    0,   30,    2, 0x08 /* Private */,
+       4,    0,   31,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -72,6 +75,7 @@ void w_new_project::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         switch (_id) {
         case 0: _t->switch_create_btn_state(); break;
         case 1: _t->create_new_project(); break;
+        case 2: _t->refill_fields(); break;
         default: ;
         }
     }
@@ -105,13 +109,13 @@ int w_new_project::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

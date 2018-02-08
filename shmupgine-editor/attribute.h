@@ -36,9 +36,13 @@ protected:
     QPushButton*    btn_delete;
 
     int id_parent;
+    entities_attributes_panel*  container;
+
+    // Code generation
+    QString allocation(QString allocate_attr);
+    QString get(QString get_attr);
 
 private:
-    entities_attributes_panel*  container;
     QVBoxLayout*    lay_mainlayout;
 };
 

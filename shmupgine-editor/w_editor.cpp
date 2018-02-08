@@ -97,6 +97,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     connect(m_ressources, SIGNAL(triggered(QAction*)), this, SLOT(handle_ressources_choice(QAction*)));
     connect(m_file, SIGNAL(triggered(QAction*)), this, SLOT(handle_file_choice(QAction*)));
     connect(m_config_window, SIGNAL(triggered(QAction*)), this, SLOT(handle_config_choice(QAction*)));
+    connect(m_build, SIGNAL(triggered(QAction*)), this, SLOT(handle_build_choice(QAction*)));
 }
 
 w_editor::~w_editor() {
@@ -121,4 +122,32 @@ void w_editor::handle_ressources_choice(QAction *a) {
     else if(a == a_groups)
         w_ressources::Instance()->show_tab(groups);
 
+}
+
+#include <iostream>
+void w_editor::handle_build_choice(QAction *a) {
+    if(a == a_run) {
+        export_code();
+    }
+}
+
+void w_editor::export_code() {
+    QString maincode = "#include \"shmupgine.h\"\n\n";
+    maincode += "using namespace std;\n\n";
+    maincode += "int main() {\n";
+    maincode += "\tshmupgine::init();\n\n";
+
+    maincode += p_graphics_manager::Instance()->getCode();
+
+    maincode += "\n\tscene sc1;\n";
+
+    maincode += p_entities_collection::Instance()->getCode();
+    maincode += p_entities_editor::Instance()->getCode();
+
+    QStringList entites = p_entities_editor::Instance()->get_entities_names();
+    for(int i = 0; i < entites.size(); ++i)
+        maincode += QString("\tsc1.add_entity(") + entites.at(i) + QString(");\n");
+
+    maincode += "\tsc1.run();\n\n\treturn 0;\n}";
+    std::cout << maincode.toStdString();
 }
