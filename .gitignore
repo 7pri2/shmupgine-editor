@@ -33,6 +33,7 @@
 
 # Qt files
 *.pro.user
+*.pro
 
 # Executables
 */shmupgine-editor
