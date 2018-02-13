@@ -35,14 +35,9 @@ public:
     bool    f_config_changed;
     int     entity_max_id;
 
-    QString generate_makefile();
-    QString get_makefile();
-
 private:
     project_data();
     ~project_data();
-
-    QString makefile;
 };
 
 #endif // PROJECT_DATA_H
