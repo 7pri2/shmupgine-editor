@@ -35,4 +35,4 @@
 *.pro.user
 
 # Executables
-shmupgine-editor
+*/shmupgine-editor
