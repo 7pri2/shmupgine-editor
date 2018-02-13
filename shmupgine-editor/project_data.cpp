@@ -13,5 +13,7 @@ project_data::~project_data() {
 }
 
 QString project_data::generate_makefile() {
-
+    makefile = "";
+    makefile += QString("CXX=") + prj_config[COMPILER_PATH] +QString("\n");
+    makefile += QString("");
 }

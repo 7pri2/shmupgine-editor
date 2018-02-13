@@ -32,6 +32,7 @@ class p_graphics_manager : public QWidget, public Singleton<p_graphics_manager> 
 
 public:
     QString select_picture();
+    QString get_picture_path(QString pic_name);
     QString getCode();
 
 private slots:

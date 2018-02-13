@@ -86,7 +86,6 @@ p_graphics_manager::p_graphics_manager(QWidget *parent) : QWidget(parent) {
 }
 
 p_graphics_manager::~p_graphics_manager() {
-    //delete select;
 }
 
 void p_graphics_manager::add_picture() {
@@ -157,10 +156,11 @@ void p_graphics_manager::append_picture(QString filename) {
 QString p_graphics_manager::select_picture() {
     select_window *select  = new select_window(tr("Select a picture"), pictures_model);
     if(select->exec()) {
-        return select->get_selected_item(PIC_PATH);
+        return select->get_selected_item(-1);
     } else {
         return "";
     }
+    delete select;
 }
 
 QString p_graphics_manager::getCode() {
@@ -172,4 +172,11 @@ QString p_graphics_manager::getCode() {
                 + pictures_model->index(i, 0).child(PIC_WIDTH, 0).data().toString() + QString(", ")
                 + pictures_model->index(i, 0).child(PIC_HEIGHT, 0).data().toString() + QString(");\n");
     return code;
+}
+
+QString p_graphics_manager::get_picture_path(QString pic_name) {
+    for(int i = 0; i < pictures_model->rowCount(); ++i)
+        if(pictures_model->index(i, 0).data().toString() == pic_name)
+            return pictures_model->index(i,0).child(PIC_PATH,0).data().toString();
+    return "";
 }

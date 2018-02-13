@@ -51,7 +51,7 @@ void attr_graphic_renderer::selectSprite() {
     QString sprite = p_graphics_manager::Instance()->select_picture();
     le_sprite->setText(sprite);
     if(sprite != "") {
-        pm_picture->load(sprite);
+        pm_picture->load(p_graphics_manager::Instance()->get_picture_path(sprite));
         gs_scene->clear();
         gs_scene->setSceneRect(0, 0, pm_picture->width(), pm_picture->height());
         gs_scene->addItem(new QGraphicsPixmapItem(*pm_picture));

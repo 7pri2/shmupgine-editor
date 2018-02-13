@@ -14,7 +14,7 @@ public:
     explicit select_window(QString title, QStandardItemModel*);
     ~select_window();
 
-    QString         get_selected_item(int row);
+    QString get_selected_item(int row);
 
 signals:
 

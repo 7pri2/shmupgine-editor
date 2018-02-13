@@ -53,5 +53,5 @@ QString select_window ::get_selected_item(int row) {
     if(row == -1)
         return listview->currentIndex().data().toString();
     else
-        return listview->currentIndex().child(row,0).data().toString();
+        return listview->currentIndex().data().toString();
 }

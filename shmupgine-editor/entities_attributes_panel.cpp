@@ -83,9 +83,18 @@ void entities_attributes_panel::update_current_index(QModelIndex index) {
 }
 
 void entities_attributes_panel::remove_entity() {
+    remove_all_attributes(entities_model->index(lv_list->currentIndex().row(), 0).child(0,0).data().toInt());
     entities_model->removeRow(lv_list->currentIndex().row());
     update_current_index(lv_list->currentIndex());
     update_what_is_visible();
+}
+
+void entities_attributes_panel::remove_all_attributes(int entity_id) {
+    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
+        if((*it)->getId_parent() == entity_id) {
+            (*it)->delete_attribute();
+            it = attr_list.begin();
+        }
 }
 
 void entities_attributes_panel::new_entity() {
@@ -173,8 +182,14 @@ QString entities_attributes_panel::get_entity_name(int id) {
 
 QString entities_attributes_panel::getCode() {
     QString code;
+    // First step: we only want to declare the entities to avoid bugs
     for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
-        code += (*it)->getCode();
+        if(dynamic_cast<attr_properties*>(*it) != NULL)
+            code += (*it)->getCode();
+    // Then we can deal with the other attributes
+    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
+        if(dynamic_cast<attr_properties*>(*it) == NULL)
+            code += (*it)->getCode();
     return code;
 }
 

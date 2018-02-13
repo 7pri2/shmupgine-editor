@@ -61,6 +61,7 @@ protected:
 
     void add_attribute(attribute* attr);
     void add_attribute(int id, attribute* attr); // pour new_entity()
+    void remove_all_attributes(int entity_id);
 
     QWidget*        attributes_widget;
 
