@@ -19,6 +19,7 @@ class p_groups : public QWidget, public Singleton<p_groups> {
 
 public:
     QString select_group();
+    QString get_code();
 
 public slots:
     void new_group();
@@ -31,6 +32,8 @@ private:
     p_groups(const p_groups&);
     p_groups(QWidget* parent = 0);
     virtual ~p_groups();
+
+    bool    already_exists(QString entity);
 
     QLabel*             lbl_groups;
     QLabel*             lbl_entities;

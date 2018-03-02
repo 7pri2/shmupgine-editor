@@ -40,6 +40,7 @@ p_groups::p_groups(QWidget* parent) : QWidget(parent) {
 
     connect(btn_new_group, SIGNAL(clicked(bool)), this, SLOT(new_group()));
     connect(btn_delete_group, SIGNAL(clicked(bool)), this, SLOT(delete_group()));
+    connect(btn_remove_entity, SIGNAL(clicked(bool)), this, SLOT(remove_entity()));
     connect(btn_add_entity, SIGNAL(clicked(bool)), this, SLOT(add_entity()));
     connect(lv_groups, SIGNAL(clicked(QModelIndex)), this, SLOT(update_entitites_visible()));
 
@@ -67,7 +68,7 @@ void p_groups::delete_group() {
 QString p_groups::select_group() {
     select_window *select  = new select_window(tr("Select a group"), model_groups);
     if(select->exec())  return select->get_selected_item(-1); // name
-    else    return "";
+    else                return "";
 }
 
 void p_groups::update_entitites_visible() {
@@ -78,7 +79,7 @@ void p_groups::update_entitites_visible() {
 
 void p_groups::add_entity() {
     QString entity = p_entities_editor::Instance()->select_entity();
-    if(!entity.isEmpty()) {
+    if(!entity.isEmpty() && !already_exists(entity)) {
         QStandardItem* item = new QStandardItem(entity);
         model_entities[lv_groups->currentIndex().child(0,0).data().toInt()]->appendRow(item);
     }
@@ -86,5 +87,14 @@ void p_groups::add_entity() {
 }
 
 void p_groups::remove_entity() {
+    model_entities[lv_groups->currentIndex().child(0,0).data().toInt()]->removeRow(lv_entities->currentIndex().row());
+}
+
+bool p_groups::already_exists(QString entity) {
+    return model_entities[lv_groups->currentIndex().child(0,0).data().toInt()]->findItems(entity).size();
+    //return false;
+}
+
+QString p_groups::get_code() {
 
 }
