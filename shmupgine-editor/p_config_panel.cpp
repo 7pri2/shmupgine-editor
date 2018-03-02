@@ -79,57 +79,43 @@ p_config_panel::p_config_panel(QWidget *parent) : QWidget(parent) {
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */
+    connect(le_name, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
+    connect(le_compiler, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
+    connect(le_compiler_flags, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
+    connect(le_working_dir, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
+    connect(le_engine, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
+    connect(le_make, SIGNAL(textChanged(QString)), this, SLOT(emit_changes()));
 
-    connect(le_compiler, SIGNAL(textChanged(QString)), this, SLOT(update_compiler(QString)));
-    connect(le_working_dir, SIGNAL(textChanged(QString)), this, SLOT(update_working_dir(QString)));
-    connect(le_compiler_flags, SIGNAL(textChanged(QString)), this, SLOT(update_compiler_flags(QString)));
-    connect(le_engine, SIGNAL(textChanged(QString)), this, SLOT(update_engine(QString)));
-    connect(le_make, SIGNAL(textChanged(QString)), this, SLOT(update_make(QString)));
-    connect(le_name, SIGNAL(textChanged(QString)), this, SLOT(update_name(QString)));
-
-    fill_fields();
+    revert_changes();
 }
 
 p_config_panel::~p_config_panel() {
 
 }
 
-void p_config_panel::update_name(QString n_name) {
-    project_data::Instance()->prj_config[NAME] = n_name;
-    project_data::Instance()->f_config_changed = true;
+void p_config_panel::emit_changes() {
+    emit changes_made(this, project_data::Instance()->prj_config[NAME] != le_name->text()
+        || project_data::Instance()->prj_config[COMPILER_FLAGS] != le_compiler_flags->text()
+        || project_data::Instance()->prj_config[COMPILER_PATH] != le_compiler->text()
+        || project_data::Instance()->prj_config[MAKE_PATH] != le_make->text()
+        || project_data::Instance()->prj_config[WORKING_DIR] != le_working_dir->text());
 }
 
-void p_config_panel::update_compiler(QString n_compiler) {
-    project_data::Instance()->prj_config[COMPILER_PATH] = n_compiler;
-    project_data::Instance()->f_config_changed = true;
-}
-
-void p_config_panel::update_compiler_flags(QString n_compiler_flags) {
-    project_data::Instance()->prj_config[COMPILER_FLAGS] = n_compiler_flags;
-    project_data::Instance()->f_config_changed = true;
-}
-
-void p_config_panel::update_working_dir(QString n_working_dir) {
-    project_data::Instance()->prj_config[WORKING_DIR] = n_working_dir;
-    project_data::Instance()->f_config_changed = true;
-}
-
-void p_config_panel::update_make(QString n_make) {
-    project_data::Instance()->prj_config[MAKE_PATH] = n_make;
-    project_data::Instance()->f_config_changed = true;
-}
-
-void p_config_panel::update_engine(QString n_engine) {
-    project_data::Instance()->prj_config[ENGINE_PATH] = n_engine;
-    project_data::Instance()->f_config_changed = true;
-}
-
-void p_config_panel::fill_fields() {
+void p_config_panel::revert_changes() {
     le_name->setText(project_data::Instance()->prj_config[NAME]);
     le_working_dir->setText(project_data::Instance()->prj_config[WORKING_DIR]);
     le_compiler->setText(project_data::Instance()->prj_config[COMPILER_PATH]);
     le_compiler_flags->setText(project_data::Instance()->prj_config[COMPILER_FLAGS]);
     le_engine->setText(project_data::Instance()->prj_config[ENGINE_PATH]);
     le_make->setText(project_data::Instance()->prj_config[MAKE_PATH]);
+    emit_changes();
 }
 
+void p_config_panel::save_changes() {
+    project_data::Instance()->prj_config[NAME] = le_name->text();
+    project_data::Instance()->prj_config[COMPILER_FLAGS] = le_compiler_flags->text();
+    project_data::Instance()->prj_config[COMPILER_PATH] = le_compiler->text();
+    project_data::Instance()->prj_config[MAKE_PATH] = le_make->text();
+    project_data::Instance()->prj_config[WORKING_DIR] = le_working_dir->text();
+    emit_changes();
+}

@@ -14,20 +14,19 @@
 #include "singleton.h"
 
 class p_config_panel : public QWidget, public Singleton<p_config_panel> {
-    Q_OBJECT
-
     friend class Singleton<p_config_panel>;
+
+    Q_OBJECT
 
 public:
 
 public slots:
-    void fill_fields();
-    void update_name(QString n_name);
-    void update_working_dir(QString n_working_dir);
-    void update_compiler(QString n_compiler);
-    void update_compiler_flags(QString n_compiler_flags);
-    void update_make(QString n_make);
-    void update_engine(QString n_engine);
+    void save_changes();
+    void revert_changes();
+    void emit_changes();
+
+signals:
+    void changes_made(QWidget*, bool);
 
 private:
     p_config_panel(QWidget *parent = 0);

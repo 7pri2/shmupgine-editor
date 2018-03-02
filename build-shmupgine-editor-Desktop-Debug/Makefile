@@ -66,7 +66,9 @@ SOURCES       = ../shmupgine-editor/main.cpp \
 		../shmupgine-editor/p_entities_editor.cpp \
 		../shmupgine-editor/w_ressources.cpp \
 		../shmupgine-editor/attr_spawner.cpp \
-		../shmupgine-editor/p_groups.cpp moc_w_new_project.cpp \
+		../shmupgine-editor/p_groups.cpp \
+		../shmupgine-editor/p_makefile.cpp \
+		../shmupgine-editor/w_config_window.cpp moc_w_new_project.cpp \
 		moc_w_editor.cpp \
 		moc_p_config_panel.cpp \
 		moc_attribute.cpp \
@@ -81,7 +83,9 @@ SOURCES       = ../shmupgine-editor/main.cpp \
 		moc_p_entities_editor.cpp \
 		moc_w_ressources.cpp \
 		moc_attr_spawner.cpp \
-		moc_p_groups.cpp
+		moc_p_groups.cpp \
+		moc_p_makefile.cpp \
+		moc_w_config_window.cpp
 OBJECTS       = main.o \
 		project_data.o \
 		w_new_project.o \
@@ -101,6 +105,8 @@ OBJECTS       = main.o \
 		w_ressources.o \
 		attr_spawner.o \
 		p_groups.o \
+		p_makefile.o \
+		w_config_window.o \
 		moc_w_new_project.o \
 		moc_w_editor.o \
 		moc_p_config_panel.o \
@@ -116,7 +122,9 @@ OBJECTS       = main.o \
 		moc_p_entities_editor.o \
 		moc_w_ressources.o \
 		moc_attr_spawner.o \
-		moc_p_groups.o
+		moc_p_groups.o \
+		moc_p_makefile.o \
+		moc_w_config_window.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -199,7 +207,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/attr_spawner.h \
-		../shmupgine-editor/p_groups.h ../shmupgine-editor/main.cpp \
+		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
+		../shmupgine-editor/w_config_window.h ../shmupgine-editor/main.cpp \
 		../shmupgine-editor/project_data.cpp \
 		../shmupgine-editor/w_new_project.cpp \
 		../shmupgine-editor/w_editor.cpp \
@@ -217,7 +227,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../shmupgine-editor/p_entities_editor.cpp \
 		../shmupgine-editor/w_ressources.cpp \
 		../shmupgine-editor/attr_spawner.cpp \
-		../shmupgine-editor/p_groups.cpp
+		../shmupgine-editor/p_groups.cpp \
+		../shmupgine-editor/p_makefile.cpp \
+		../shmupgine-editor/w_config_window.cpp
 QMAKE_TARGET  = shmupgine-editor
 DESTDIR       = 
 TARGET        = shmupgine-editor
@@ -374,8 +386,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../shmupgine-editor/project_data.h ../shmupgine-editor/singleton.h ../shmupgine-editor/w_new_project.h ../shmupgine-editor/w_editor.h ../shmupgine-editor/p_config_panel.h ../shmupgine-editor/windows_panels.h ../shmupgine-editor/attribute.h ../shmupgine-editor/entities_attributes_panel.h ../shmupgine-editor/attr_properties.h ../shmupgine-editor/attr_controls.h ../shmupgine-editor/attr_destructor.h ../shmupgine-editor/attr_graphic_renderer.h ../shmupgine-editor/attr_physics.h ../shmupgine-editor/attributes.h ../shmupgine-editor/select_window.h ../shmupgine-editor/w_entities_collection.h ../shmupgine-editor/p_graphics_manager.h ../shmupgine-editor/p_entities_collection.h ../shmupgine-editor/p_entities_editor.h ../shmupgine-editor/w_ressources.h ../shmupgine-editor/attr_spawner.h ../shmupgine-editor/p_groups.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../shmupgine-editor/main.cpp ../shmupgine-editor/project_data.cpp ../shmupgine-editor/w_new_project.cpp ../shmupgine-editor/w_editor.cpp ../shmupgine-editor/p_config_panel.cpp ../shmupgine-editor/attribute.cpp ../shmupgine-editor/entities_attributes_panel.cpp ../shmupgine-editor/attr_properties.cpp ../shmupgine-editor/attr_controls.cpp ../shmupgine-editor/attr_destructor.cpp ../shmupgine-editor/attr_graphic_renderer.cpp ../shmupgine-editor/attr_physics.cpp ../shmupgine-editor/select_window.cpp ../shmupgine-editor/p_graphics_manager.cpp ../shmupgine-editor/p_entities_collection.cpp ../shmupgine-editor/p_entities_editor.cpp ../shmupgine-editor/w_ressources.cpp ../shmupgine-editor/attr_spawner.cpp ../shmupgine-editor/p_groups.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../shmupgine-editor/project_data.h ../shmupgine-editor/singleton.h ../shmupgine-editor/w_new_project.h ../shmupgine-editor/w_editor.h ../shmupgine-editor/p_config_panel.h ../shmupgine-editor/windows_panels.h ../shmupgine-editor/attribute.h ../shmupgine-editor/entities_attributes_panel.h ../shmupgine-editor/attr_properties.h ../shmupgine-editor/attr_controls.h ../shmupgine-editor/attr_destructor.h ../shmupgine-editor/attr_graphic_renderer.h ../shmupgine-editor/attr_physics.h ../shmupgine-editor/attributes.h ../shmupgine-editor/select_window.h ../shmupgine-editor/w_entities_collection.h ../shmupgine-editor/p_graphics_manager.h ../shmupgine-editor/p_entities_collection.h ../shmupgine-editor/p_entities_editor.h ../shmupgine-editor/w_ressources.h ../shmupgine-editor/attr_spawner.h ../shmupgine-editor/p_groups.h ../shmupgine-editor/p_makefile.h ../shmupgine-editor/w_config_window.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../shmupgine-editor/main.cpp ../shmupgine-editor/project_data.cpp ../shmupgine-editor/w_new_project.cpp ../shmupgine-editor/w_editor.cpp ../shmupgine-editor/p_config_panel.cpp ../shmupgine-editor/attribute.cpp ../shmupgine-editor/entities_attributes_panel.cpp ../shmupgine-editor/attr_properties.cpp ../shmupgine-editor/attr_controls.cpp ../shmupgine-editor/attr_destructor.cpp ../shmupgine-editor/attr_graphic_renderer.cpp ../shmupgine-editor/attr_physics.cpp ../shmupgine-editor/select_window.cpp ../shmupgine-editor/p_graphics_manager.cpp ../shmupgine-editor/p_entities_collection.cpp ../shmupgine-editor/p_entities_editor.cpp ../shmupgine-editor/w_ressources.cpp ../shmupgine-editor/attr_spawner.cpp ../shmupgine-editor/p_groups.cpp ../shmupgine-editor/p_makefile.cpp ../shmupgine-editor/w_config_window.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -401,9 +413,9 @@ benchmark: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_w_new_project.cpp moc_w_editor.cpp moc_p_config_panel.cpp moc_attribute.cpp moc_entities_attributes_panel.cpp moc_attr_properties.cpp moc_attr_destructor.cpp moc_attr_graphic_renderer.cpp moc_attr_physics.cpp moc_select_window.cpp moc_p_graphics_manager.cpp moc_p_entities_collection.cpp moc_p_entities_editor.cpp moc_w_ressources.cpp moc_attr_spawner.cpp moc_p_groups.cpp
+compiler_moc_header_make_all: moc_w_new_project.cpp moc_w_editor.cpp moc_p_config_panel.cpp moc_attribute.cpp moc_entities_attributes_panel.cpp moc_attr_properties.cpp moc_attr_destructor.cpp moc_attr_graphic_renderer.cpp moc_attr_physics.cpp moc_select_window.cpp moc_p_graphics_manager.cpp moc_p_entities_collection.cpp moc_p_entities_editor.cpp moc_w_ressources.cpp moc_attr_spawner.cpp moc_p_groups.cpp moc_p_makefile.cpp moc_w_config_window.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_w_new_project.cpp moc_w_editor.cpp moc_p_config_panel.cpp moc_attribute.cpp moc_entities_attributes_panel.cpp moc_attr_properties.cpp moc_attr_destructor.cpp moc_attr_graphic_renderer.cpp moc_attr_physics.cpp moc_select_window.cpp moc_p_graphics_manager.cpp moc_p_entities_collection.cpp moc_p_entities_editor.cpp moc_w_ressources.cpp moc_attr_spawner.cpp moc_p_groups.cpp
+	-$(DEL_FILE) moc_w_new_project.cpp moc_w_editor.cpp moc_p_config_panel.cpp moc_attribute.cpp moc_entities_attributes_panel.cpp moc_attr_properties.cpp moc_attr_destructor.cpp moc_attr_graphic_renderer.cpp moc_attr_physics.cpp moc_select_window.cpp moc_p_graphics_manager.cpp moc_p_entities_collection.cpp moc_p_entities_editor.cpp moc_w_ressources.cpp moc_attr_spawner.cpp moc_p_groups.cpp moc_p_makefile.cpp moc_w_config_window.cpp
 moc_w_new_project.cpp: ../shmupgine-editor/singleton.h \
 		../shmupgine-editor/project_data.h \
 		../shmupgine-editor/w_new_project.h \
@@ -444,9 +456,11 @@ moc_attr_destructor.cpp: ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attribute.h \
 		../shmupgine-editor/attr_destructor.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -462,9 +476,11 @@ moc_attr_graphic_renderer.cpp: ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attribute.h \
 		../shmupgine-editor/attr_graphic_renderer.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -515,18 +531,47 @@ moc_attr_spawner.cpp: ../shmupgine-editor/attribute.h \
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attr_spawner.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/attr_spawner.h -o moc_attr_spawner.cpp
 
 moc_p_groups.cpp: ../shmupgine-editor/singleton.h \
 		../shmupgine-editor/select_window.h \
+		../shmupgine-editor/windows_panels.h \
+		../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
+		../shmupgine-editor/p_graphics_manager.h \
+		../shmupgine-editor/p_entities_collection.h \
+		../shmupgine-editor/entities_attributes_panel.h \
+		../shmupgine-editor/p_entities_editor.h \
+		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
+		../shmupgine-editor/w_editor.h \
+		../shmupgine-editor/w_ressources.h \
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/p_groups.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/p_groups.h -o moc_p_groups.cpp
+
+moc_p_makefile.cpp: ../shmupgine-editor/project_data.h \
+		../shmupgine-editor/singleton.h \
+		../shmupgine-editor/p_makefile.h \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/p_makefile.h -o moc_p_makefile.cpp
+
+moc_w_config_window.cpp: ../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
+		../shmupgine-editor/singleton.h \
+		../shmupgine-editor/p_makefile.h \
+		../shmupgine-editor/w_config_window.h \
+		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/w_config_window.h -o moc_w_config_window.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -552,9 +597,11 @@ main.o: ../shmupgine-editor/main.cpp ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
-		../shmupgine-editor/w_new_project.h
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../shmupgine-editor/main.cpp
 
 project_data.o: ../shmupgine-editor/project_data.cpp ../shmupgine-editor/project_data.h \
@@ -577,8 +624,10 @@ w_editor.o: ../shmupgine-editor/w_editor.cpp ../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_ressources.h \
-		../shmupgine-editor/w_new_project.h
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o w_editor.o ../shmupgine-editor/w_editor.cpp
 
 p_config_panel.o: ../shmupgine-editor/p_config_panel.cpp ../shmupgine-editor/p_config_panel.h \
@@ -605,19 +654,23 @@ entities_attributes_panel.o: ../shmupgine-editor/entities_attributes_panel.cpp .
 		../shmupgine-editor/p_entities_collection.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attr_graphic_renderer.h \
 		../shmupgine-editor/attr_physics.h \
 		../shmupgine-editor/attr_spawner.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o entities_attributes_panel.o ../shmupgine-editor/entities_attributes_panel.cpp
 
 attr_properties.o: ../shmupgine-editor/attr_properties.cpp ../shmupgine-editor/attr_properties.h \
-		../shmupgine-editor/attribute.h
+		../shmupgine-editor/attribute.h \
+		../shmupgine-editor/entities_attributes_panel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_properties.o ../shmupgine-editor/attr_properties.cpp
 
-attr_controls.o: ../shmupgine-editor/attr_controls.cpp ../shmupgine-editor/attr_controls.h \
+attr_controls.o: ../shmupgine-editor/attr_controls.cpp ../shmupgine-editor/entities_attributes_panel.h \
+		../shmupgine-editor/attr_controls.h \
 		../shmupgine-editor/attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_controls.o ../shmupgine-editor/attr_controls.cpp
 
@@ -632,9 +685,11 @@ attr_destructor.o: ../shmupgine-editor/attr_destructor.cpp ../shmupgine-editor/a
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_destructor.o ../shmupgine-editor/attr_destructor.cpp
 
@@ -649,14 +704,17 @@ attr_graphic_renderer.o: ../shmupgine-editor/attr_graphic_renderer.cpp ../shmupg
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h \
 		../shmupgine-editor/attribute.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_graphic_renderer.o ../shmupgine-editor/attr_graphic_renderer.cpp
 
 attr_physics.o: ../shmupgine-editor/attr_physics.cpp ../shmupgine-editor/attr_physics.h \
-		../shmupgine-editor/attribute.h
+		../shmupgine-editor/attribute.h \
+		../shmupgine-editor/entities_attributes_panel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_physics.o ../shmupgine-editor/attr_physics.cpp
 
 select_window.o: ../shmupgine-editor/select_window.cpp ../shmupgine-editor/select_window.h
@@ -690,8 +748,10 @@ w_ressources.o: ../shmupgine-editor/w_ressources.cpp ../shmupgine-editor/w_resso
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
-		../shmupgine-editor/w_new_project.h
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o w_ressources.o ../shmupgine-editor/w_ressources.cpp
 
 attr_spawner.o: ../shmupgine-editor/attr_spawner.cpp ../shmupgine-editor/attr_spawner.h \
@@ -706,15 +766,41 @@ attr_spawner.o: ../shmupgine-editor/attr_spawner.cpp ../shmupgine-editor/attr_sp
 		../shmupgine-editor/entities_attributes_panel.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_groups.h \
+		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
-		../shmupgine-editor/w_new_project.h
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o attr_spawner.o ../shmupgine-editor/attr_spawner.cpp
 
 p_groups.o: ../shmupgine-editor/p_groups.cpp ../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/singleton.h \
-		../shmupgine-editor/select_window.h
+		../shmupgine-editor/select_window.h \
+		../shmupgine-editor/windows_panels.h \
+		../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
+		../shmupgine-editor/p_graphics_manager.h \
+		../shmupgine-editor/p_entities_collection.h \
+		../shmupgine-editor/entities_attributes_panel.h \
+		../shmupgine-editor/p_entities_editor.h \
+		../shmupgine-editor/p_makefile.h \
+		../shmupgine-editor/w_editor.h \
+		../shmupgine-editor/w_ressources.h \
+		../shmupgine-editor/w_new_project.h \
+		../shmupgine-editor/w_config_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o p_groups.o ../shmupgine-editor/p_groups.cpp
+
+p_makefile.o: ../shmupgine-editor/p_makefile.cpp ../shmupgine-editor/p_makefile.h \
+		../shmupgine-editor/project_data.h \
+		../shmupgine-editor/singleton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o p_makefile.o ../shmupgine-editor/p_makefile.cpp
+
+w_config_window.o: ../shmupgine-editor/w_config_window.cpp ../shmupgine-editor/w_config_window.h \
+		../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
+		../shmupgine-editor/singleton.h \
+		../shmupgine-editor/p_makefile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o w_config_window.o ../shmupgine-editor/w_config_window.cpp
 
 moc_w_new_project.o: moc_w_new_project.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_w_new_project.o moc_w_new_project.cpp
@@ -763,6 +849,12 @@ moc_attr_spawner.o: moc_attr_spawner.cpp
 
 moc_p_groups.o: moc_p_groups.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_p_groups.o moc_p_groups.cpp
+
+moc_p_makefile.o: moc_p_makefile.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_p_makefile.o moc_p_makefile.cpp
+
+moc_w_config_window.o: moc_w_config_window.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_w_config_window.o moc_w_config_window.cpp
 
 ####### Install
 

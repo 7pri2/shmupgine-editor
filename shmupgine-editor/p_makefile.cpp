@@ -2,10 +2,15 @@
 
 p_makefile::p_makefile(QWidget* parent) : QWidget(parent) {
     makefile = "";
+    btn_generate    = new QPushButton(tr("Generate makefile"), this);
     te_text_area    = new QTextEdit(this);
     mainlayout      = new QVBoxLayout(this);
 
     mainlayout->addWidget(te_text_area);
+    mainlayout->addWidget(btn_generate);
+
+    connect(te_text_area, SIGNAL(textChanged()), this, SLOT(emit_changes()));
+    connect(btn_generate, SIGNAL(clicked(bool)), this, SLOT(generate_makefile()));
 }
 
 p_makefile::~p_makefile() {
@@ -22,7 +27,7 @@ QString p_makefile::generate_makefile() {
     makefile += QString("SRC=src/\n\n");
 
     makefile += QString("CXX=") + project_data::Instance()->prj_config[COMPILER_PATH] + QString("\n");
-    makefile += QString("CXXFLAGS=") + project_data::Instance()->prj_config[COMPILER_FLAGS] + QString("-I$(HEADERS)\n");
+    makefile += QString("CXXFLAGS=") + project_data::Instance()->prj_config[COMPILER_FLAGS] + QString(" -I$(HEADERS)\n");
     makefile += QString("LDFLAGS=-L$(LIB) -lshmupgine -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio\n");
     makefile += QString("DEBUG=-g\n\n");
 
@@ -43,9 +48,24 @@ QString p_makefile::generate_makefile() {
     makefile += QString("clean:\n");
     makefile += QString("\t-rm -f $(EXECUTABLES)");
 
+    te_text_area->setPlainText(makefile);
     return makefile;
 }
 
 QString p_makefile::get_makefile() {
     return makefile;
+}
+
+void p_makefile::revert_changes() {
+    te_text_area->setPlainText(makefile);
+    emit_changes();
+}
+
+void p_makefile::save_changes() {
+    makefile = te_text_area->toPlainText();
+    emit_changes();
+}
+
+void p_makefile::emit_changes() {
+    emit changes_made(this, makefile != te_text_area->toPlainText());
 }

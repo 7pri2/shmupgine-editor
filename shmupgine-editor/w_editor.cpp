@@ -106,7 +106,9 @@ w_editor::~w_editor() {
 
 void w_editor::handle_config_choice(QAction *a) {
     if(a == a_project)
-        p_config_panel::Instance()->show();
+        w_config_window::Instance()->show_tab(project);
+    else if(a == a_makefile)
+        w_config_window::Instance()->show_tab(makefile);
 }
 
 void w_editor::handle_file_choice(QAction *a) {
