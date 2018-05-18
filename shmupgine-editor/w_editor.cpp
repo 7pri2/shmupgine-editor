@@ -98,6 +98,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     connect(m_file, SIGNAL(triggered(QAction*)), this, SLOT(handle_file_choice(QAction*)));
     connect(m_config_window, SIGNAL(triggered(QAction*)), this, SLOT(handle_config_choice(QAction*)));
     connect(m_build, SIGNAL(triggered(QAction*)), this, SLOT(handle_build_choice(QAction*)));
+    connect(dock_attributes, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), p_entities_editor::Instance(), SLOT(change_scroll_perspective(Qt::DockWidgetArea)));
 }
 
 w_editor::~w_editor() {

@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_entities_attributes_panel_t {
-    QByteArrayData data[13];
-    char stringdata0[168];
+    QByteArrayData data[16];
+    char stringdata0[216];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,16 +37,20 @@ QT_MOC_LITERAL(4, 51, 8), // "QAction*"
 QT_MOC_LITERAL(5, 60, 16), // "remove_attribute"
 QT_MOC_LITERAL(6, 77, 10), // "attribute*"
 QT_MOC_LITERAL(7, 88, 4), // "attr"
-QT_MOC_LITERAL(8, 93, 20), // "update_current_index"
-QT_MOC_LITERAL(9, 114, 5), // "index"
-QT_MOC_LITERAL(10, 120, 13), // "remove_entity"
-QT_MOC_LITERAL(11, 134, 10), // "new_entity"
-QT_MOC_LITERAL(12, 145, 22) // "update_what_is_visible"
+QT_MOC_LITERAL(8, 93, 25), // "change_scroll_perspective"
+QT_MOC_LITERAL(9, 119, 18), // "Qt::DockWidgetArea"
+QT_MOC_LITERAL(10, 138, 2), // "np"
+QT_MOC_LITERAL(11, 141, 20), // "update_current_index"
+QT_MOC_LITERAL(12, 162, 5), // "index"
+QT_MOC_LITERAL(13, 168, 13), // "remove_entity"
+QT_MOC_LITERAL(14, 182, 10), // "new_entity"
+QT_MOC_LITERAL(15, 193, 22) // "update_what_is_visible"
 
     },
     "entities_attributes_panel\0showMenu\0\0"
     "handle_actions\0QAction*\0remove_attribute\0"
-    "attribute*\0attr\0update_current_index\0"
+    "attribute*\0attr\0change_scroll_perspective\0"
+    "Qt::DockWidgetArea\0np\0update_current_index\0"
     "index\0remove_entity\0new_entity\0"
     "update_what_is_visible"
 };
@@ -58,7 +62,7 @@ static const uint qt_meta_data_entities_attributes_panel[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -66,19 +70,21 @@ static const uint qt_meta_data_entities_attributes_panel[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x0a /* Public */,
-       3,    1,   50,    2, 0x0a /* Public */,
-       5,    1,   53,    2, 0x0a /* Public */,
-       8,    1,   56,    2, 0x0a /* Public */,
-      10,    0,   59,    2, 0x0a /* Public */,
-      11,    0,   60,    2, 0x0a /* Public */,
-      12,    0,   61,    2, 0x09 /* Protected */,
+       1,    0,   54,    2, 0x0a /* Public */,
+       3,    1,   55,    2, 0x0a /* Public */,
+       5,    1,   58,    2, 0x0a /* Public */,
+       8,    1,   61,    2, 0x0a /* Public */,
+      11,    1,   64,    2, 0x0a /* Public */,
+      13,    0,   67,    2, 0x0a /* Public */,
+      14,    0,   68,    2, 0x0a /* Public */,
+      15,    0,   69,    2, 0x09 /* Protected */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 4,    2,
     QMetaType::Void, 0x80000000 | 6,    7,
-    QMetaType::Void, QMetaType::QModelIndex,    9,
+    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, QMetaType::QModelIndex,   12,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -95,10 +101,11 @@ void entities_attributes_panel::qt_static_metacall(QObject *_o, QMetaObject::Cal
         case 0: _t->showMenu(); break;
         case 1: _t->handle_actions((*reinterpret_cast< QAction*(*)>(_a[1]))); break;
         case 2: _t->remove_attribute((*reinterpret_cast< attribute*(*)>(_a[1]))); break;
-        case 3: _t->update_current_index((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
-        case 4: _t->remove_entity(); break;
-        case 5: _t->new_entity(); break;
-        case 6: _t->update_what_is_visible(); break;
+        case 3: _t->change_scroll_perspective((*reinterpret_cast< Qt::DockWidgetArea(*)>(_a[1]))); break;
+        case 4: _t->update_current_index((*reinterpret_cast< QModelIndex(*)>(_a[1]))); break;
+        case 5: _t->remove_entity(); break;
+        case 6: _t->new_entity(); break;
+        case 7: _t->update_what_is_visible(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -140,13 +147,13 @@ int entities_attributes_panel::qt_metacall(QMetaObject::Call _c, int _id, void *
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

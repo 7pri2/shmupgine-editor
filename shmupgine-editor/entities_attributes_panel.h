@@ -34,6 +34,7 @@ public slots:
     void showMenu();
     void handle_actions(QAction*);
     void remove_attribute(attribute* attr);
+    void change_scroll_perspective(Qt::DockWidgetArea np);
 
     // ENTITIES
     void update_current_index(QModelIndex index);
@@ -66,7 +67,8 @@ protected:
     QWidget*        attributes_widget;
 
     QPushButton*    btn_new_attribute;
-    QVBoxLayout*    lay_attr_layout;
+    QVBoxLayout*    Vlay_attr_layout;
+    QHBoxLayout*    Hlay_attr_layout;
 
     // Menu
     QMenu*      m_choose_attribute;
