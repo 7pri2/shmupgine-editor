@@ -21,8 +21,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     scroll_area         = new QScrollArea(this);
     attributes_widget   = new QWidget(this);
     btn_new_attribute   = new QPushButton(tr("+"), attributes_widget);
-    Vlay_attr_layout    = new QVBoxLayout(attributes_widget);
-    Hlay_attr_layout    = new QHBoxLayout(attributes_widget);
+    lay_attr_layout    = new QGridLayout(attributes_widget);
 
     // Attr Menu
     m_choose_attribute  = new QMenu(attributes_widget);
@@ -51,9 +50,9 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     lv_list->setModel(entities_model);
 
     // Attributes
-    Vlay_attr_layout->addWidget(btn_new_attribute);
-    Vlay_attr_layout->setAlignment(Qt::AlignTop);
-    attributes_widget->setLayout(Vlay_attr_layout);
+    lay_attr_layout->addWidget(btn_new_attribute);
+    lay_attr_layout->setAlignment(Qt::AlignTop);
+    attributes_widget->setLayout(lay_attr_layout);
 
     scroll_area->setWidget(attributes_widget);
     scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -117,7 +116,7 @@ void entities_attributes_panel::update_what_is_visible() {
 void entities_attributes_panel::add_attribute(attribute *attr) {
     attr->setId_parent(current_entity.child(0,0).data().toInt());
     attr->setParent(attributes_widget);
-    Vlay_attr_layout->addWidget(attr);
+    lay_attr_layout->addWidget(attr);
     attr_list.push_back(attr);
     update_what_is_visible();
 }
@@ -125,7 +124,7 @@ void entities_attributes_panel::add_attribute(attribute *attr) {
 void entities_attributes_panel::add_attribute(int id, attribute *attr) {
     attr->setId_parent(id);
     attr->setParent(attributes_widget);
-    Vlay_attr_layout->addWidget(attr);
+    lay_attr_layout->addWidget(attr);
     attr_list.push_back(attr);
     update_what_is_visible();
 }
@@ -208,7 +207,7 @@ void entities_attributes_panel::change_scroll_perspective(Qt::DockWidgetArea np)
     default:
         scroll_area->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        // Change from vertical to horizontal layout
+		// Change from vertical to horizontal layout
         break;
     case Qt::DockWidgetArea::LeftDockWidgetArea:
     case Qt::DockWidgetArea::RightDockWidgetArea:

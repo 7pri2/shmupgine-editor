@@ -67,8 +67,7 @@ protected:
     QWidget*        attributes_widget;
 
     QPushButton*    btn_new_attribute;
-    QVBoxLayout*    Vlay_attr_layout;
-    QHBoxLayout*    Hlay_attr_layout;
+    QGridLayout*    lay_attr_layout;
 
     // Menu
     QMenu*      m_choose_attribute;
