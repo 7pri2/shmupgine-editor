@@ -59,6 +59,7 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     scroll_area->setWidgetResizable(true);
     scroll_area->setMinimumWidth(250);
 
+	attributes_widget->setProperty("class", "attributes");
 
     /* * * * * * * *
      * CONNECTIONS *

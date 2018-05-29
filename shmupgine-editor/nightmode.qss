@@ -1,0 +1,42 @@
+* {
+	color: lightgray;
+}
+
+QPushButton, QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .attributes {
+	background-color: rgb(46, 47, 48);
+}
+
+QMenu, QDockWidget {
+	border: 1px solid black;
+}
+
+QMenuBar, QGroupBox, QTabWidget::tab-bar, QTabBar::tab:selected, QDockWidget, QMainWindow {
+	background-color: rgb(66, 67, 68);
+}
+
+QListView::item:hover, QMenuBar::item:selected {
+	background-color: rgba(120, 120, 120, 0.2);
+}
+
+QListView::item:selected, QMenu::item:selected {
+	background-color: rgb(30, 32, 34);
+}
+
+QScrollArea {
+	border: none;
+}
+
+QScrollBar::handle:vertical {
+	background: rgb(86, 87, 88);
+	border: 1px solid grey;
+}
+
+QScrollBar:vertical {
+	background: rgb(66, 67, 68);
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+QLineEdit, QSpinBox {
+	background-color: rgb(86, 87 ,88);
+}

@@ -87,7 +87,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     this->addDockWidget(Qt::RightDockWidgetArea, dock_entities);
     this->addDockWidget(Qt::RightDockWidgetArea, dock_attributes);
     this->setMinimumSize(WIDTH, HEIGHT);
-    this->setCentralWidget(gv_widget);
+	this->setCentralWidget(gv_widget);
 
     /* * * * * * * *
      * CONNECTIONS *

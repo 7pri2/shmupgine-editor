@@ -1,0 +1,5 @@
+<RCC>
+    <qresource lang="qss" prefix="/qss">
+        <file>nightmode.qss</file>
+    </qresource>
+</RCC>
