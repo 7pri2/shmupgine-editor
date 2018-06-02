@@ -101,6 +101,8 @@ w_new_project::w_new_project(QWidget *parent) : QWidget(parent) {
     btn_engine->setMaximumWidth(BTN_WIDTH);
     btn_make->setMaximumWidth(BTN_WIDTH);
 
+    this->setProperty("class", "background");
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */

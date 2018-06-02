@@ -1,40 +1,54 @@
 * {
-	color: lightgray;
+    color: lightgray;
 }
 
-QPushButton, QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .attributes {
-	background-color: rgb(46, 47, 48);
+QPushButton, QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .background {
+    background-color: rgb(46, 47, 48);
+}
+
+QCheckBox::indicator {
+    background-color: rgb(46, 47, 48);
+    border: 1px solid rgb(86, 87, 88);
+}
+
+QCheckBox::indicator:hover {
+    border: 2px solid rgb(86, 87, 88);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(86, 107, 188);
+    background-insets: 2px;
 }
 
 QMenu, QDockWidget {
-	border: 1px solid black;
+    border: 1px solid black;
 }
 
-QMenuBar, QGroupBox, QTabWidget::tab-bar, QTabBar::tab:selected, QDockWidget, QMainWindow {
-	background-color: rgb(66, 67, 68);
+QMenuBar, QGroupBox, QTabWidget::tab-bar, QDockWidget, QMainWindow {
+    background-color: rgb(66, 67, 68);
 }
 
 QListView::item:hover, QMenuBar::item:selected {
-	background-color: rgba(120, 120, 120, 0.2);
+    background-color: rgba(120, 120, 120, 0.2);
 }
 
 QListView::item:selected, QMenu::item:selected {
-	background-color: rgb(30, 32, 34);
+    background-color: rgb(30, 32, 34);
 }
 
 QScrollArea {
-	border: none;
+    border: none;
 }
 
 QScrollBar::handle:vertical {
-	background: rgb(86, 87, 88);
-	border: 1px solid grey;
+    background: rgb(86, 87, 88);
+    border: 1px solid grey;
 }
 
 QScrollBar:vertical {
-	background: rgb(66, 67, 68);
-	margin-top: 15px;
-	margin-bottom: 0px;
+    background: rgb(66, 67, 68);
+    margin-top: 15px;
+    margin-bottom: 0px;
 }
 
 QLineEdit, QSpinBox {

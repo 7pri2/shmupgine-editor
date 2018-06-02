@@ -17,7 +17,10 @@ SOURCES += \
     p_entities_editor.cpp \
     w_ressources.cpp \
     attr_spawner.cpp \
-    p_groups.cpp
+    p_groups.cpp \
+    w_config_window.cpp \
+    spawnslot.cpp \
+    p_makefile.cpp
 
 HEADERS += \
     project_data.h \
@@ -41,6 +44,14 @@ HEADERS += \
     p_entities_editor.h \
     w_ressources.h \
     attr_spawner.h \
-    p_groups.h
+    p_groups.h \
+    w_config_window.h \
+    spawnslot.h \
+    p_makefile.h
 
 QT += widgets
+
+RESOURCES += \
+    shmupgine-editor.qrc
+
+DISTFILES +=

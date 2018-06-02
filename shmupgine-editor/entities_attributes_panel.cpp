@@ -57,9 +57,10 @@ entities_attributes_panel::entities_attributes_panel(QWidget *parent) : QWidget(
     scroll_area->setWidget(attributes_widget);
     scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scroll_area->setWidgetResizable(true);
-    scroll_area->setMinimumWidth(250);
+    scroll_area->setMinimumWidth(300);
+    scroll_area->setMinimumHeight(300);
 
-	attributes_widget->setProperty("class", "attributes");
+    attributes_widget->setProperty("class", "background");
 
     /* * * * * * * *
      * CONNECTIONS *

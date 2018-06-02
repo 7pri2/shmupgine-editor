@@ -27,6 +27,8 @@ w_ressources::w_ressources(QWidget *parent) : QWidget(parent) {
     tabs->addTab(p_entities_collection::Instance(), tr("&Entities collection"));
     tabs->addTab(p_groups::Instance(), tr("&Groups"));
 
+    this->setProperty("class", "background");
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */

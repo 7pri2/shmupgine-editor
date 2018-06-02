@@ -28,6 +28,7 @@ w_config_window::w_config_window(QWidget* parent) : QWidget(parent)  {
      * * * * * * * * * * */
 
     this->setWindowTitle(tr("Configuration"));
+    this->setProperty("class", "background");
 
     tab_widget->addTab(p_config_panel::Instance(), tr("&Project"));
     tab_widget->addTab(p_makefile::Instance(), tr("&Makefile"));
