@@ -32,8 +32,6 @@
 *.app
 
 # Qt files
-*.pro.user
-*.pro
 *moc*
 
 # Executables
