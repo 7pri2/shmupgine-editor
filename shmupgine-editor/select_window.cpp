@@ -31,6 +31,8 @@ select_window::select_window(QString title, QStandardItemModel* model) : QDialog
     lay_mainlayout->addWidget(listview);
     lay_mainlayout->addLayout(lay_btn);
 
+    this->setProperty("class", "background");
+
     /* * * * * * * *
      * CONNECTIONS *
      * * * * * * * */
