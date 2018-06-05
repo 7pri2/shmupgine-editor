@@ -16,8 +16,8 @@ QCheckBox::indicator:hover {
 }
 
 QCheckBox::indicator:checked {
-    background-color: rgb(86, 107, 188);
-    background-insets: 2px;
+    background-color: rgb(185, 185, 186);
+    background-insets: 5px;
 }
 
 QMenu, QDockWidget {
