@@ -38,13 +38,18 @@ private:
     QLabel*     lbl_cooldown_ms;
     QLineEdit*  le_cooldown_ms;
 
-    QLabel*      lbl_entity_profile;
+    QLabel*         lbl_entity_profile;
     QLineEdit*      le_entity_profile;
     QPushButton*    btn_load_entity;
+
+    QLabel*         lbl_sound;
+    QLineEdit*      le_sound;
+    QPushButton*    btn_select_sound;
 
     QHBoxLayout*    lay_entity_profile;
     QHBoxLayout*    lay_cooldown;
     QHBoxLayout*    lay_groups_btn;
+    QHBoxLayout*    lay_sound;
     QVBoxLayout*    lay_main;
 };
 

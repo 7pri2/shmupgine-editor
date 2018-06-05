@@ -19,12 +19,18 @@ spawnslot::spawnslot(QWidget* parent) : QWidget(parent) {
     btn_load_entity     = new QPushButton("...", this);
     lay_entity_profile  = new QHBoxLayout(this);
 
+    lbl_sound           = new QLabel(tr("Sound played on spawn"), this);
+    le_sound            = new QLineEdit(this);
+    btn_select_sound    = new QPushButton("...", this);
+    lay_sound           = new QHBoxLayout(this);
+
     this->setLayout(lay_main);
 
     cb_spawn_at_parents_position    = new QCheckBox(tr("Spawn at parent's position"), this);
     cb_autospawn                    = new QCheckBox(tr("Auto-spawn"), this);
 
     btn_load_entity->setMaximumWidth(32);
+    btn_select_sound->setMaximumWidth(32);
 
     lv_groups->setModel(model_groups);
     lv_groups->setMaximumHeight(MAXHEIGHT);
@@ -40,8 +46,13 @@ spawnslot::spawnslot(QWidget* parent) : QWidget(parent) {
     lay_entity_profile->addWidget(le_entity_profile);
     lay_entity_profile->addWidget(btn_load_entity);
 
+    lay_sound->addWidget(lbl_sound);
+    lay_sound->addWidget(le_sound);
+    lay_sound->addWidget(btn_select_sound);
+
     lay_main->addLayout(lay_entity_profile);
     lay_main->addLayout(lay_cooldown);
+    lay_main->addLayout(lay_sound);
     lay_main->addWidget(lbl_groups);
     lay_main->addWidget(lv_groups);
     lay_main->addLayout(lay_groups_btn);
