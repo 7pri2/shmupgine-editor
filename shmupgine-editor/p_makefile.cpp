@@ -8,6 +8,7 @@ p_makefile::p_makefile(QWidget* parent) : QWidget(parent) {
 
     mainlayout->addWidget(te_text_area);
     mainlayout->addWidget(btn_generate);
+    te_text_area->setTabStopWidth(24);
 
     connect(te_text_area, SIGNAL(textChanged()), this, SLOT(emit_changes()));
     connect(btn_generate, SIGNAL(clicked(bool)), this, SLOT(generate_makefile()));
