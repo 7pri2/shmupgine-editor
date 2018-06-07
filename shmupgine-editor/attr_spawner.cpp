@@ -1,4 +1,5 @@
 #include "attr_spawner.h"
+#include "spawnslot.h"
 
 attr_spawner::attr_spawner(entities_attributes_panel* container) : attribute(container) {
     tw_spawnslots = new QTabWidget(this);
@@ -22,17 +23,8 @@ attr_spawner::~attr_spawner() {
 
 QString attr_spawner::getCode() {
     QString code = attribute::allocation("spawner");
-    /*if(!le_entity_profile->text().isEmpty()) {
-        code += attribute::get("spawner") + QString("->set_profile(") + le_entity_profile->text() + QString(");\n");
-        if(cb_autospawn->isChecked())
-            code += attribute::get("spawner") + QString("->f_auto_spawn = true;\n");
-        if(!cb_spawn_at_parents_position->isChecked())
-            code += attribute::get("spawner") + QString("->f_spawn_at_parent = false;\n");
-        if(le_cooldown_ms->text().toInt() != 250)
-            code += attribute::get("spawner") + QString("->ms_cooldown = ") + le_cooldown_ms->text()+ QString(";\n");
-        for(int i = 0; i < model_groups->rowCount(); ++i)
-            code += attribute::get("spawner") + QString("->add_group_to_join(") + model_groups->index(i,0).data().toString() + QString(");\n");
-    }*/
+    for(int i = 0; i < tw_spawnslots->count()-1; ++i)
+        code += ((attr_spawner*)(tw_spawnslots->widget(i)))->getCode();
     return code;
 }
 

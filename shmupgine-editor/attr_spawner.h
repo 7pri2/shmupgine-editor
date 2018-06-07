@@ -1,7 +1,6 @@
 #ifndef ATTR_SPAWNER_H
 #define ATTR_SPAWNER_H
 
-#include "spawnslot.h"
 #include "attribute.h"
 #include "windows_panels.h"
 

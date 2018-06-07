@@ -24,7 +24,11 @@ public:
 
     void    setId_parent(int id);
     int     getId_parent();
+
+    // Code generation
     virtual QString getCode();
+    QString allocation(QString allocate_attr);
+    QString get(QString get_attr);
 
 public slots:
     void delete_attribute();
@@ -37,10 +41,6 @@ protected:
 
     int id_parent;
     entities_attributes_panel*  container;
-
-    // Code generation
-    QString allocation(QString allocate_attr);
-    QString get(QString get_attr);
 
 private:
     QVBoxLayout*    lay_mainlayout;

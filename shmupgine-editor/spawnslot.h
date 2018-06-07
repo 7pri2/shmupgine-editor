@@ -8,12 +8,13 @@
 #include <QCheckBox>
 #include <QHBoxLayout>
 #include "attribute.h"
+#include "attr_spawner.h"
 #include "windows_panels.h"
 
 class spawnslot : public QWidget {
     Q_OBJECT
 public:
-    spawnslot(QWidget* parent = 0);
+    spawnslot(attr_spawner* parent = 0);
     virtual ~spawnslot();
 
     virtual QString getCode();
@@ -46,11 +47,17 @@ private:
     QLineEdit*      le_sound;
     QPushButton*    btn_select_sound;
 
+    QLabel*         lbl_name;
+    QLineEdit*      le_name;
+
     QHBoxLayout*    lay_entity_profile;
     QHBoxLayout*    lay_cooldown;
+    QHBoxLayout*    lay_name;
     QHBoxLayout*    lay_groups_btn;
     QHBoxLayout*    lay_sound;
     QVBoxLayout*    lay_main;
+
+    attr_spawner*   m_spawner;
 };
 
 

@@ -539,6 +539,7 @@ moc_w_ressources.cpp: ../shmupgine-editor/singleton.h \
 
 moc_attr_spawner.cpp: ../shmupgine-editor/spawnslot.h \
 		../shmupgine-editor/attribute.h \
+		../shmupgine-editor/attr_spawner.h \
 		../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_config_panel.h \
 		../shmupgine-editor/project_data.h \
@@ -586,6 +587,8 @@ moc_w_config_window.cpp: ../shmupgine-editor/p_config_panel.h \
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/w_config_window.h -o moc_w_config_window.cpp
 
 moc_spawnslot.cpp: ../shmupgine-editor/attribute.h \
+		../shmupgine-editor/attr_spawner.h \
+		../shmupgine-editor/spawnslot.h \
 		../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_config_panel.h \
 		../shmupgine-editor/project_data.h \
@@ -839,6 +842,7 @@ w_config_window.o: ../shmupgine-editor/w_config_window.cpp ../shmupgine-editor/w
 
 spawnslot.o: ../shmupgine-editor/spawnslot.cpp ../shmupgine-editor/spawnslot.h \
 		../shmupgine-editor/attribute.h \
+		../shmupgine-editor/attr_spawner.h \
 		../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_config_panel.h \
 		../shmupgine-editor/project_data.h \
