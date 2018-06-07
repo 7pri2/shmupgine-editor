@@ -53,6 +53,7 @@ private:
     QAction*    a_graphics;
     QAction*    a_entities_collection;
     QAction*    a_groups;
+    QAction*    a_sounds;
     // Build
     QMenu*      m_build;
     QAction*    a_run;

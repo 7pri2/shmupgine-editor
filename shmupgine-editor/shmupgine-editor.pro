@@ -20,7 +20,8 @@ SOURCES += \
     p_groups.cpp \
     w_config_window.cpp \
     spawnslot.cpp \
-    p_makefile.cpp
+    p_makefile.cpp \
+    p_sounds.cpp
 
 HEADERS += \
     project_data.h \
@@ -47,7 +48,8 @@ HEADERS += \
     p_groups.h \
     w_config_window.h \
     spawnslot.h \
-    p_makefile.h
+    p_makefile.h \
+    p_sounds.h
 
 QT += widgets
 

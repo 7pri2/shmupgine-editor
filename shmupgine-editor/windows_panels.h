@@ -8,6 +8,7 @@
 #include "p_entities_editor.h"
 #include "p_groups.h"
 #include "p_makefile.h"
+#include "p_sounds.h"
 
 // Windows
 #include "w_editor.h"

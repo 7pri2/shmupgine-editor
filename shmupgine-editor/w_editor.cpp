@@ -24,6 +24,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     a_graphics              = new QAction(tr("&Graphics manager"), this);
     a_entities_collection   = new QAction(tr("&Entities collection"), this);
     a_groups                = new QAction(tr("&Groups"), this);
+    a_sounds                = new QAction(tr("&Sounds"), this);
     // Build
     m_build         = new QMenu(tr("Build"), this);
     a_run           = new QAction(tr("&Run"), this);
@@ -65,6 +66,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     m_ressources->addAction(a_graphics);
     m_ressources->addAction(a_entities_collection);
     m_ressources->addAction(a_groups);
+    m_ressources->addAction(a_sounds);
     // Build
     mb_menuBar->addMenu(m_build);
     m_build->addAction(a_run);
@@ -124,6 +126,8 @@ void w_editor::handle_ressources_choice(QAction *a) {
         w_ressources::Instance()->show_tab(entities_collection);
     else if(a == a_groups)
         w_ressources::Instance()->show_tab(groups);
+    else if(a == a_sounds)
+        w_ressources::Instance()->show_tab(sounds);
 
 }
 

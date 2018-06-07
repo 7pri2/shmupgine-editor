@@ -10,7 +10,8 @@
 enum {
     graphics_manager    = 0,
     entities_collection = 1,
-    groups              = 2
+    groups              = 2,
+    sounds              = 3
 };
 
 class w_ressources : public QWidget, public Singleton<w_ressources> {
