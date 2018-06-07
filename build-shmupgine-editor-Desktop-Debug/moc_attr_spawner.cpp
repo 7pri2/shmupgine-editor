@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_attr_spawner_t {
-    QByteArrayData data[4];
-    char stringdata0[26];
+    QByteArrayData data[6];
+    char stringdata0[47];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,10 +32,13 @@ static const qt_meta_stringdata_attr_spawner_t qt_meta_stringdata_attr_spawner =
 QT_MOC_LITERAL(0, 0, 12), // "attr_spawner"
 QT_MOC_LITERAL(1, 13, 7), // "new_tab"
 QT_MOC_LITERAL(2, 21, 0), // ""
-QT_MOC_LITERAL(3, 22, 3) // "tab"
+QT_MOC_LITERAL(3, 22, 3), // "tab"
+QT_MOC_LITERAL(4, 26, 15), // "update_tab_name"
+QT_MOC_LITERAL(5, 42, 4) // "name"
 
     },
-    "attr_spawner\0new_tab\0\0tab"
+    "attr_spawner\0new_tab\0\0tab\0update_tab_name\0"
+    "name"
 };
 #undef QT_MOC_LITERAL
 
@@ -45,7 +48,7 @@ static const uint qt_meta_data_attr_spawner[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -53,10 +56,12 @@ static const uint qt_meta_data_attr_spawner[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   19,    2, 0x08 /* Private */,
+       1,    1,   24,    2, 0x08 /* Private */,
+       4,    1,   27,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void, QMetaType::QString,    5,
 
        0        // eod
 };
@@ -68,6 +73,7 @@ void attr_spawner::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->new_tab((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->update_tab_name((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -98,13 +104,13 @@ int attr_spawner::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }

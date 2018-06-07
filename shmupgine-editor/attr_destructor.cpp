@@ -103,3 +103,7 @@ void attr_destructor::add_groups() {
 void attr_destructor::remove_group() {
     sm_groups->removeRow(lv_groups->currentIndex().row());
 }
+
+bool attr_destructor::verify_validity() {
+    return true;
+}

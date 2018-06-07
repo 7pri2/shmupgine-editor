@@ -35,3 +35,11 @@ void attr_spawner::new_tab(int tab) {
         tw_spawnslots->addTab(newtab, "+");
     }
 }
+
+void attr_spawner::update_tab_name(QString name) {
+    tw_spawnslots->setTabText(tw_spawnslots->currentIndex(), name);
+}
+
+bool attr_spawner::verify_validity() {
+    return true;
+}

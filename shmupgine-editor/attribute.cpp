@@ -62,3 +62,7 @@ QString attribute::allocation(QString allocate_attr) {
 QString attribute::get(QString get_attr) {
     return QString("\t") + container->get_entity_name(id_parent) + QString("->get_attribute<") + get_attr + QString(">()");
 }
+
+bool attribute::verify_validity() {
+    return false;
+}

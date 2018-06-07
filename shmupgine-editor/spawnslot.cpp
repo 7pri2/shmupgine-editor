@@ -90,6 +90,7 @@ spawnslot::spawnslot(attr_spawner* parent) : QWidget(parent) {
     connect(btn_load_entity, SIGNAL(clicked(bool)), this, SLOT(load_profile()));
     connect(btn_add_group, SIGNAL(clicked(bool)), this, SLOT(add_group()));
     connect(btn_del_group, SIGNAL(clicked(bool)), this, SLOT(remove_group()));
+    connect(le_name, SIGNAL(textEdited(QString)), m_spawner, SLOT(update_tab_name(QString)));
 }
 
 spawnslot::~spawnslot() {

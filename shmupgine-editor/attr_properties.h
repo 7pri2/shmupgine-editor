@@ -11,6 +11,8 @@ public:
     ~attr_properties();
 
     virtual QString getCode();
+    virtual bool verify_validity();
+
     int getPosX();
     int getPosY();
 

@@ -12,6 +12,7 @@ public:
     ~attr_physics();
 
     virtual QString getCode();
+    virtual bool verify_validity();
 
 private:
     QDial*      dial_angle;

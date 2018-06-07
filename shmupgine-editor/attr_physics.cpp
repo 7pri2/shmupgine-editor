@@ -29,6 +29,7 @@ attr_physics::attr_physics(entities_attributes_panel* container) : attribute(con
     sb_velocity->setValidator(new QDoubleValidator(-99999, 99999, 2, this));*/
     sb_angle->setRange(0,359);
     dial_angle->setRange(0, 359);
+    sb_velocity->setMinimum(0);
 
     /* * * * * * * *
      *   LAYOUTS   *
@@ -69,4 +70,8 @@ QString attr_physics::getCode() {
     if(sb_velocity->value() != 0)
         code += attribute::get("physics") + QString("->set_velocity(") + QString::number(sb_velocity->value()) + QString(");\n");
     return code;
+}
+
+bool attr_physics::verify_validity() {
+    return !sb_velocity->text().isEmpty() && sb_velocity->value() >= 0 ;
 }

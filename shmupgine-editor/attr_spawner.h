@@ -11,9 +11,11 @@ public:
     virtual ~attr_spawner();
 
     virtual QString getCode();
+    virtual bool verify_validity();
 
 private slots:
     void new_tab(int tab);
+    void update_tab_name(QString name);
 
 private:
     QTabWidget* tw_spawnslots;

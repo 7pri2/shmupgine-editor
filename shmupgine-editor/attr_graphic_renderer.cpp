@@ -68,3 +68,7 @@ QString attr_graphic_renderer::getCode() {
 QPixmap attr_graphic_renderer::get_picture() {
     return *pm_picture;
 }
+
+bool attr_graphic_renderer::verify_validity() {
+    return true;
+}

@@ -14,6 +14,7 @@ public:
     ~attr_destructor();
 
     virtual QString getCode();
+    virtual bool verify_validity();
 
 public slots:
 

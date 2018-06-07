@@ -30,6 +30,8 @@ public:
     QString allocation(QString allocate_attr);
     QString get(QString get_attr);
 
+    virtual bool verify_validity();
+
 public slots:
     void delete_attribute();
 

@@ -17,6 +17,7 @@ public:
     ~attr_graphic_renderer();
 
     virtual QString getCode();
+    virtual bool verify_validity();
     QPixmap get_picture();
 
 private slots:

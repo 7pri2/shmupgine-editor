@@ -36,3 +36,7 @@ QString attr_controls::getCode() {
             code += attribute::get("controls") + QString("->move_speed = ") + le_move_speed->text() + QString(";\n");
     return code;
 }
+
+bool attr_controls::verify_validity() {
+    return !le_move_speed->text().isEmpty();
+}

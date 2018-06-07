@@ -11,6 +11,7 @@ public:
     ~attr_controls();
 
     virtual QString getCode();
+    virtual bool verify_validity();
 
 private:
     QLabel*         lbl_move_speed;

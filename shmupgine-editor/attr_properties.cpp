@@ -67,3 +67,7 @@ int attr_properties::getPosX() {
 int attr_properties::getPosY() {
     return le_y->text().toInt();
 }
+
+bool attr_properties::verify_validity() {
+    return !le_x->text().isEmpty() && !le_y->text().isEmpty();
+}
