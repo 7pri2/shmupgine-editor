@@ -74,7 +74,6 @@ void p_sounds::append_sound(QString filename) {
     }
 }
 
-#include <iostream>
 void p_sounds::play_sound() {
     if(tw_categories->currentIndex() == 0) {
         mediaplayer->setMedia(QUrl::fromLocalFile(sounds_model->index(lv_sounds->currentIndex().row(), 0).child(0, 0).data().toString()));
@@ -87,4 +86,24 @@ void p_sounds::play_sound() {
 
 void p_sounds::stop_sound() {
     mediaplayer->stop();
+}
+
+QString p_sounds::select_sound_effect() {
+    select_window *select  = new select_window(tr("Select a sound effect"), sounds_model);
+    if(select->exec()) {
+        return select->get_selected_item(-1);
+    } else {
+        return "";
+    }
+    delete select;
+}
+
+QString p_sounds::select_music() {
+    select_window *select  = new select_window(tr("Select a music"), musics_model);
+    if(select->exec()) {
+        return select->get_selected_item(-1);
+    } else {
+        return "";
+    }
+    delete select;
 }

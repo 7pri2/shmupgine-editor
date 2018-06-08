@@ -91,6 +91,7 @@ spawnslot::spawnslot(attr_spawner* parent) : QWidget(parent) {
     connect(btn_add_group, SIGNAL(clicked(bool)), this, SLOT(add_group()));
     connect(btn_del_group, SIGNAL(clicked(bool)), this, SLOT(remove_group()));
     connect(le_name, SIGNAL(textEdited(QString)), m_spawner, SLOT(update_tab_name(QString)));
+    connect(btn_select_sound, SIGNAL(clicked(bool)), this, SLOT(select_sound()));
 }
 
 spawnslot::~spawnslot() {
@@ -127,4 +128,9 @@ void spawnslot::add_group() {
 
 void spawnslot::remove_group() {
     model_groups->removeRow(lv_groups->currentIndex().row());
+}
+
+void spawnslot::select_sound() {
+    QString sound = p_sounds::Instance()->select_sound_effect();
+    le_sound->setText(sound);
 }

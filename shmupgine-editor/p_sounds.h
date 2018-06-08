@@ -11,6 +11,7 @@
 #include <QHBoxLayout>
 #include <QMediaPlayer>
 #include "singleton.h"
+#include "select_window.h"
 
 class p_sounds : public QWidget, public Singleton<p_sounds> {
     Q_OBJECT
@@ -18,6 +19,8 @@ class p_sounds : public QWidget, public Singleton<p_sounds> {
     friend class Singleton<p_sounds>;
 
 public:
+    QString select_sound_effect();
+    QString select_music();
 
 signals:
 

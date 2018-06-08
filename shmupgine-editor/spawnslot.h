@@ -25,6 +25,7 @@ private slots:
     void    load_profile();
     void    add_group();
     void    remove_group();
+    void    select_sound();
 
 private:
     QLabel*             lbl_groups;

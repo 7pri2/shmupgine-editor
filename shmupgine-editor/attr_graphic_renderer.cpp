@@ -50,7 +50,7 @@ attr_graphic_renderer::~attr_graphic_renderer() {
 void attr_graphic_renderer::selectSprite() {
     QString sprite = p_graphics_manager::Instance()->select_picture();
     le_sprite->setText(sprite);
-    if(sprite != "") {
+    if(!sprite.isEmpty()) {
         pm_picture->load(p_graphics_manager::Instance()->get_picture_path(sprite));
         gs_scene->clear();
         gs_scene->setSceneRect(0, 0, pm_picture->width(), pm_picture->height());

@@ -1,4 +1,4 @@
-#define DARK_MODE true
+#define DARK_MODE false
 
 #include <QApplication>
 #include "windows_panels.h"
