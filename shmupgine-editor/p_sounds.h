@@ -7,7 +7,9 @@
 #include <QTabWidget>
 #include <QListView>
 #include <QVBoxLayout>
+#include <QFileDialog>
 #include <QHBoxLayout>
+#include <QMediaPlayer>
 #include "singleton.h"
 
 class p_sounds : public QWidget, public Singleton<p_sounds> {
@@ -20,11 +22,16 @@ public:
 signals:
 
 public slots:
+    void load_sound();
+    void play_sound();
+    void stop_sound();
 
 private:
     p_sounds(QWidget *parent = 0);
     p_sounds(const p_sounds&);
     virtual ~p_sounds();
+
+    void append_sound(QString filename);
 
     QListView*      lv_sounds;
     QListView*      lv_musics;
@@ -41,6 +48,8 @@ private:
 
     QVBoxLayout*    lay_btn;
     QHBoxLayout*    lay_main;
+
+    QMediaPlayer*   mediaplayer;
 };
 
 #endif // P_SOUNDS_H

@@ -51,7 +51,8 @@ HEADERS += \
     p_makefile.h \
     p_sounds.h
 
-QT += widgets
+QT += widgets \
+    multimedia
 
 RESOURCES += \
     shmupgine-editor.qrc
