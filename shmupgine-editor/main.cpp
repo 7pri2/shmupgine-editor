@@ -1,4 +1,4 @@
-#define DARK_MODE false
+#define DARK_MODE true
 
 #include <QApplication>
 #include "windows_panels.h"
@@ -17,5 +17,6 @@ int main(int argc, char* argv[]) {
     }
 
     w_editor::Instance()->show();
+    w_build::Instance()->show();
     return app.exec();
 }

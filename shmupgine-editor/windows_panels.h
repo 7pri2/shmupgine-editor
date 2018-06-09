@@ -15,5 +15,6 @@
 #include "w_ressources.h"
 #include "w_new_project.h"
 #include "w_config_window.h"
+#include "w_build.h"
 
 #endif // WINDOWS_H

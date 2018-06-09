@@ -31,7 +31,7 @@ private slots:
 private:
     w_config_window(QWidget* parent = 0);
     w_config_window(const w_config_window&);
-    ~w_config_window();
+    virtual ~w_config_window();
 
     QTabWidget*     tab_widget;
 

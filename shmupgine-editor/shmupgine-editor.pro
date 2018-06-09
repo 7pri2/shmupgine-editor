@@ -21,7 +21,8 @@ SOURCES += \
     w_config_window.cpp \
     spawnslot.cpp \
     p_makefile.cpp \
-    p_sounds.cpp
+    p_sounds.cpp \
+    w_build.cpp
 
 HEADERS += \
     project_data.h \
@@ -49,12 +50,11 @@ HEADERS += \
     w_config_window.h \
     spawnslot.h \
     p_makefile.h \
-    p_sounds.h
+    p_sounds.h \
+    w_build.h
 
 QT += widgets \
     multimedia
 
 RESOURCES += \
     shmupgine-editor.qrc
-
-DISTFILES +=
