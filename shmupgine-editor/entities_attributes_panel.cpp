@@ -118,7 +118,7 @@ void entities_attributes_panel::update_what_is_visible() {
 void entities_attributes_panel::add_attribute(attribute *attr) {
     attr->setId_parent(current_entity.child(0,0).data().toInt());
     attr->setParent(attributes_widget);
-    lay_attr_layout->addWidget(attr);
+    attributes_widget->layout()->addWidget(attr);
     attr_list.push_back(attr);
     update_what_is_visible();
 }
@@ -126,7 +126,7 @@ void entities_attributes_panel::add_attribute(attribute *attr) {
 void entities_attributes_panel::add_attribute(int id, attribute *attr) {
     attr->setId_parent(id);
     attr->setParent(attributes_widget);
-    lay_attr_layout->addWidget(attr);
+    attributes_widget->layout()->addWidget(attr);
     attr_list.push_back(attr);
     update_what_is_visible();
 }
@@ -203,19 +203,38 @@ QStringList entities_attributes_panel::get_entities_names() {
 }
 
 void entities_attributes_panel::change_scroll_perspective(Qt::DockWidgetArea np) {
+    /*
+    int id = current_entity.child(0,0).data().toInt();
     switch (np) {
     case Qt::DockWidgetArea::TopDockWidgetArea:
     case Qt::DockWidgetArea::BottomDockWidgetArea:
-    default:
+    default: {
         scroll_area->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-		// Change from vertical to horizontal layout
+        // Change from vertical to horizontal layout
+        QHBoxLayout* new_lyt = new QHBoxLayout(this);
+        delete attributes_widget->layout();
+        new_lyt->addWidget(btn_new_attribute);
+        for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it) {
+            new_lyt->addWidget(*it);
+        }
+        attributes_widget->setLayout(new_lyt);
         break;
+    }
     case Qt::DockWidgetArea::LeftDockWidgetArea:
-    case Qt::DockWidgetArea::RightDockWidgetArea:
+    case Qt::DockWidgetArea::RightDockWidgetArea: {
         scroll_area->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scroll_area->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         // Change from horizontal to vertical layout
+        QVBoxLayout* new_lyt = new QVBoxLayout(this);
+        delete attributes_widget->layout();
+        new_lyt->addWidget(btn_new_attribute);
+        for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it) {
+            new_lyt->addWidget(*it);
+        }
+        attributes_widget->setLayout(new_lyt);
         break;
     }
+    }
+    */
 }
