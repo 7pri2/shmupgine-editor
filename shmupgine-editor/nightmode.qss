@@ -2,7 +2,7 @@
     color: lightgray;
 }
 
-QPushButton, QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .background {
+QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .background {
     background-color: rgb(46, 47, 48);
 }
 
@@ -18,6 +18,35 @@ QCheckBox::indicator:hover {
 QCheckBox::indicator:checked {
     background-color: rgb(185, 185, 186);
     background-insets: 5px;
+}
+
+QPushButton {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px;
+}
+
+QPushButton:disabled {
+    border: 1px solid transparent;
+    border-radius: 1px;
+    background-color: rgba(170, 170, 170, 0.1);
+    color:  gray;
+    padding: 2px;
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+QProgressBar {
+    border-radius: 0px;
+    text-align: center;
+    background-color: rgb(84, 85, 85);
+}
+
+QProgressBar::chunk {
+    background-color: rgb(153, 153, 153);
 }
 
 QMenu, QDockWidget {
