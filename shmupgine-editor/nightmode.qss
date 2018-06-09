@@ -2,8 +2,44 @@
     color: lightgray;
 }
 
-QGraphicsView, QTabWidget, QListView, QTabBar::tab:!selected, QMenu, .background {
+QGraphicsView, QListView, QMenu, .background {
     background-color: rgb(46, 47, 48);
+}
+
+QTabBar::tab {
+    padding: 5px;
+    min-width: 2ex;
+}
+
+QTabBar::tab:!selected {
+    background-color: rgb(86, 87, 88);
+    border: 1px solid transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    margin-top: 3px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgb(59, 59, 60);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid transparent;
+}
+
+QTabBar::tab:hover {
+    background-color: rgb(59, 59, 60);
+}
+
+QTabWidget::tab-bar {
+    left: 5px;
+    top: 1px;
+}
+
+QTabWidget::pane {
+    background-color: rgb(59, 59, 60);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+QTabwidget {
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 QCheckBox::indicator {
@@ -76,10 +112,12 @@ QScrollBar::handle:vertical {
 
 QScrollBar:vertical {
     background: rgb(66, 67, 68);
-    margin-top: 15px;
-    margin-bottom: 0px;
 }
 
-QLineEdit, QSpinBox {
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background-color: transparent;
+}
+
+QLineEdit, QSpinBox, QTextEdit {
 	background-color: rgb(86, 87 ,88);
 }
