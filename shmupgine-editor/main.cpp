@@ -7,6 +7,9 @@
 
 int main(int argc, char* argv[]) {
 	QApplication app(argc, argv);
+    QCoreApplication::setOrganizationName("shmupgine");
+    QCoreApplication::setOrganizationDomain("");
+    QCoreApplication::setApplicationName("shmupgine-editor");
 
     if(DARK_MODE) {
         QFile stylesheet_file(":qss/nightmode.qss");
@@ -17,6 +20,5 @@ int main(int argc, char* argv[]) {
     }
 
     w_editor::Instance()->show();
-    w_build::Instance()->show();
     return app.exec();
 }

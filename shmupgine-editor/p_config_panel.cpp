@@ -119,3 +119,11 @@ void p_config_panel::save_changes() {
     project_data::Instance()->prj_config[WORKING_DIR] = le_working_dir->text();
     emit_changes();
 }
+
+QString p_config_panel::get_project_name() {
+    return le_name->text();
+}
+
+void p_config_panel::set_project_name(QString name) {
+    le_name->setText(name);
+}

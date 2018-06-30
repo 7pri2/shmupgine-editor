@@ -11,6 +11,8 @@
 #include <QGraphicsView>
 #include <QSplitter>
 #include <QDockWidget>
+#include <QSettings>
+#include <QCloseEvent>
 
 #include <QHBoxLayout>
 #include "singleton.h"
@@ -22,6 +24,11 @@ class w_editor : public QMainWindow, public Singleton<w_editor> {
     Q_OBJECT
 
     friend class Singleton<w_editor>;
+
+public:
+    void write_settings();
+    void read_settings();
+    void closeEvent(QCloseEvent *event);
 
 public slots:
     void handle_file_choice(QAction*);

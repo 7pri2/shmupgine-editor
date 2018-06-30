@@ -88,7 +88,9 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
 
     this->addDockWidget(Qt::RightDockWidgetArea, dock_entities);
     this->addDockWidget(Qt::RightDockWidgetArea, dock_attributes);
-    this->setMinimumSize(WIDTH, HEIGHT);
+
+    setDockNestingEnabled(false);
+
 	this->setCentralWidget(gv_widget);
 
     /* * * * * * * *
@@ -101,6 +103,8 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     connect(m_config_window, SIGNAL(triggered(QAction*)), this, SLOT(handle_config_choice(QAction*)));
     connect(m_build, SIGNAL(triggered(QAction*)), this, SLOT(handle_build_choice(QAction*)));
     connect(dock_attributes, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), p_entities_editor::Instance(), SLOT(change_scroll_perspective(Qt::DockWidgetArea)));
+
+    read_settings();
 }
 
 w_editor::~w_editor() {
@@ -131,7 +135,6 @@ void w_editor::handle_ressources_choice(QAction *a) {
 
 }
 
-#include <iostream>
 void w_editor::handle_build_choice(QAction *a) {
     if(a == a_run) {
         export_code();
@@ -156,5 +159,38 @@ void w_editor::export_code() {
         maincode += QString("\tsc1.add_entity(") + entites.at(i) + QString(");\n");
 
     maincode += "\tsc1.run();\n\n\treturn 0;\n}";
-    std::cout << maincode.toStdString();
+}
+
+void w_editor::write_settings() {
+    QSettings settings;
+    settings.beginGroup("editor");
+    settings.setValue("size", size());
+    settings.setValue("position", pos());
+    settings.setValue("attr_dock_floating", dock_attributes->isFloating());
+    settings.setValue("attr_dock_position", dock_attributes->pos());
+    settings.setValue("attr_dock_size", dock_attributes->size());
+    settings.setValue("ent_dock_floating", dock_entities->isFloating());
+    settings.setValue("ent_dock_position", dock_entities->pos());
+    settings.setValue("ent_dock_size", dock_entities->size());
+    settings.endGroup();
+}
+
+void w_editor::read_settings() {
+    QSettings settings;
+
+    settings.beginGroup("editor");
+    resize(settings.value("size", QSize(WIDTH, HEIGHT)).toSize());
+    move(settings.value("position", QPoint(200, 200)).toPoint());
+    dock_attributes->move(settings.value("attr_dock_position").toPoint());
+    dock_attributes->resize(settings.value("attr_dock_size").toSize());
+    dock_attributes->setFloating(settings.value("attr_dock_floating", false).toBool());
+    dock_attributes->move(settings.value("ent_dock_position").toPoint());
+    dock_attributes->resize(settings.value("ent_dock_size").toSize());
+    dock_attributes->setFloating(settings.value("ent_dock_floating", false).toBool());
+    settings.endGroup();
+}
+
+void w_editor::closeEvent(QCloseEvent *event) {
+    write_settings();
+    event->accept();
 }

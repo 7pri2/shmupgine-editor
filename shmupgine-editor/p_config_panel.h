@@ -19,6 +19,9 @@ class p_config_panel : public QWidget, public Singleton<p_config_panel> {
     Q_OBJECT
 
 public:
+    QString get_project_name();
+
+    void set_project_name(QString name);
 
 public slots:
     void save_changes();
