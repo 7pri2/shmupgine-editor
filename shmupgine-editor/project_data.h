@@ -29,6 +29,8 @@ enum {
 
 class project_data : public Singleton<project_data> {
     friend class Singleton<project_data>;
+    friend class w_editor;
+    friend class w_new_project;
 
 public:
     QString prj_config[6];

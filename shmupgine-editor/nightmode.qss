@@ -119,5 +119,21 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
 }
 
 QLineEdit, QSpinBox, QTextEdit {
-	background-color: rgb(86, 87 ,88);
+    background-color: rgb(86, 87 ,88);
+}
+
+QLabel.error {
+    color: red;
+}
+
+QMenuBar::item:disabled {
+    color: grey;
+}
+
+QMenu::item:disabled {
+    color: grey;
+}
+
+QDockWidget:disabled {
+    color: grey;
 }

@@ -8,6 +8,7 @@
 #include <QVBoxLayout>
 #include <QCheckBox>
 #include <QDialog>
+#include <QFileDialog>
 #include <QPushButton>
 #include <QDir>
 
@@ -26,6 +27,10 @@ private slots:
     void    switch_create_btn_state();
     void    create_new_project();
     void    refill_fields();
+    void    choose_make_path();
+    void    choose_working_dir();
+    void    choose_engine_path();
+    void    choose_compiler_path();
 
 private:
     w_new_project(const w_new_project&);
@@ -38,6 +43,7 @@ private:
     QLabel* lbl_compiler_flags;
     QLabel* lbl_engine;
     QLabel* lbl_make;
+    QLabel* lbl_error;
 
     QLineEdit*  le_name;
     QLineEdit*  le_working_dir;

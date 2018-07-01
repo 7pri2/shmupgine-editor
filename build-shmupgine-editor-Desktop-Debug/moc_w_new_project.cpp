@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_w_new_project_t {
-    QByteArrayData data[7];
-    char stringdata0[90];
+    QByteArrayData data[11];
+    char stringdata0[166];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,18 @@ QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 4), // "show"
 QT_MOC_LITERAL(4, 33, 23), // "switch_create_btn_state"
 QT_MOC_LITERAL(5, 57, 18), // "create_new_project"
-QT_MOC_LITERAL(6, 76, 13) // "refill_fields"
+QT_MOC_LITERAL(6, 76, 13), // "refill_fields"
+QT_MOC_LITERAL(7, 90, 16), // "choose_make_path"
+QT_MOC_LITERAL(8, 107, 18), // "choose_working_dir"
+QT_MOC_LITERAL(9, 126, 18), // "choose_engine_path"
+QT_MOC_LITERAL(10, 145, 20) // "choose_compiler_path"
 
     },
     "w_new_project\0show_details\0\0show\0"
     "switch_create_btn_state\0create_new_project\0"
-    "refill_fields"
+    "refill_fields\0choose_make_path\0"
+    "choose_working_dir\0choose_engine_path\0"
+    "choose_compiler_path"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +56,7 @@ static const uint qt_meta_data_w_new_project[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,13 +64,21 @@ static const uint qt_meta_data_w_new_project[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   34,    2, 0x08 /* Private */,
-       4,    0,   37,    2, 0x08 /* Private */,
-       5,    0,   38,    2, 0x08 /* Private */,
-       6,    0,   39,    2, 0x08 /* Private */,
+       1,    1,   54,    2, 0x08 /* Private */,
+       4,    0,   57,    2, 0x08 /* Private */,
+       5,    0,   58,    2, 0x08 /* Private */,
+       6,    0,   59,    2, 0x08 /* Private */,
+       7,    0,   60,    2, 0x08 /* Private */,
+       8,    0,   61,    2, 0x08 /* Private */,
+       9,    0,   62,    2, 0x08 /* Private */,
+      10,    0,   63,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -82,6 +96,10 @@ void w_new_project::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 1: _t->switch_create_btn_state(); break;
         case 2: _t->create_new_project(); break;
         case 3: _t->refill_fields(); break;
+        case 4: _t->choose_make_path(); break;
+        case 5: _t->choose_working_dir(); break;
+        case 6: _t->choose_engine_path(); break;
+        case 7: _t->choose_compiler_path(); break;
         default: ;
         }
     }
@@ -114,13 +132,13 @@ int w_new_project::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 8;
     }
     return _id;
 }

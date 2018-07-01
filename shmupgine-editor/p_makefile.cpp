@@ -14,6 +14,8 @@ p_makefile::p_makefile(QWidget* parent) : QWidget(parent) {
 
     connect(te_text_area, SIGNAL(textChanged()), this, SLOT(emit_changes()));
     connect(btn_generate, SIGNAL(clicked(bool)), this, SLOT(generate_makefile()));
+
+    generate_makefile();
 }
 
 p_makefile::~p_makefile() {

@@ -91,7 +91,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
 
     setDockNestingEnabled(false);
 
-	this->setCentralWidget(gv_widget);
+    this->setCentralWidget(gv_widget);
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -105,6 +105,7 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     connect(dock_attributes, SIGNAL(dockLocationChanged(Qt::DockWidgetArea)), p_entities_editor::Instance(), SLOT(change_scroll_perspective(Qt::DockWidgetArea)));
 
     read_settings();
+    enable_editor(false);
 }
 
 w_editor::~w_editor() {
@@ -209,6 +210,7 @@ void w_editor::open_project() {
             p_config_panel::Instance()->load_config(json_project["config"].toObject());
             p_makefile::Instance()->load_makefile(json_project["config"].toObject());
         }
+        w_editor::Instance()->enable_editor(true);
         project_file.close();
     }
 }
@@ -229,4 +231,14 @@ void w_editor::save_project() {
         out_project_file.write(QJsonDocument(json_project).toJson());
         out_project_file.close();
     }
+}
+
+void w_editor::enable_editor(bool enable) {
+    dock_attributes->setEnabled(enable);
+    dock_entities->setEnabled(enable);
+    m_config_window->setEnabled(enable);
+    m_ressources->setEnabled(enable);
+    m_build->setEnabled(enable);
+    a_save->setEnabled(enable);
+    a_close->setEnabled(enable);
 }

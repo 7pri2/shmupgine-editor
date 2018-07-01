@@ -39,6 +39,7 @@ public slots:
     void handle_build_choice(QAction*);
     void handle_config_choice(QAction*);
     void handle_ressources_choice(QAction*);
+    void enable_editor(bool enable);
     void export_code();
 
 private:
