@@ -22,6 +22,7 @@ class w_new_project : public QDialog, public Singleton<w_new_project> {
 public:
 
 private slots:
+    void    show_details(bool show);
     void    switch_create_btn_state();
     void    create_new_project();
     void    refill_fields();

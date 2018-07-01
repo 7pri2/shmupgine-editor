@@ -85,7 +85,6 @@ w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     lay_advanced_config->addLayout(lay_compiler_flags);
     lay_advanced_config->addLayout(lay_engine);
     lay_advanced_config->addLayout(lay_make);
-    lay_advanced_config->addLayout(lay_buttons);
 
     // Main layout
     this->setLayout(lay_mainlayout);
@@ -95,6 +94,7 @@ w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     lay_mainlayout->addLayout(lay_working_dir);
     lay_mainlayout->addLayout(lay_show_more);
     lay_mainlayout->addLayout(lay_advanced_config);
+    lay_mainlayout->addLayout(lay_buttons);
 
     // Resize buttons
     btn_working_dir->setMaximumWidth(BTN_WIDTH);
@@ -103,6 +103,7 @@ w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     btn_make->setMaximumWidth(BTN_WIDTH);
 
     this->setProperty("class", "background");
+    this->setMinimumWidth(280);
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -116,9 +117,11 @@ w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     connect(le_working_dir, SIGNAL(textChanged(QString)), this, SLOT(switch_create_btn_state()));
     connect(btn_cancel, SIGNAL(clicked(bool)), this, SLOT(close()));
     connect(btn_create, SIGNAL(clicked(bool)), this, SLOT(create_new_project()));
+    connect(chkbx_show_more, SIGNAL(toggled(bool)), this, SLOT(show_details(bool)));
 
     switch_create_btn_state();
     refill_fields();
+    show_details(false);
 }
 
 w_new_project::~w_new_project() {
@@ -159,4 +162,28 @@ void w_new_project::refill_fields() {
     le_engine->setText(project_data::Instance()->prj_config[ENGINE_PATH]);
     le_make->setText(project_data::Instance()->prj_config[MAKE_PATH]);
     le_working_dir->setText(project_data::Instance()->prj_config[WORKING_DIR]);
+}
+
+void w_new_project::show_details(bool show) {
+    if(show) {
+        lay_mainlayout->addLayout(lay_advanced_config);
+        lay_mainlayout->removeItem(lay_buttons);
+        lay_mainlayout->addLayout(lay_buttons);
+    } else {
+        lay_mainlayout->removeItem(lay_advanced_config);
+    }
+    le_compiler->setVisible(show);
+    le_compiler_flags->setVisible(show);
+    le_engine->setVisible(show);
+    le_make->setVisible(show);
+
+    btn_compiler->setVisible(show);
+    btn_engine->setVisible(show);
+    btn_make->setVisible(show);
+
+    lbl_compiler->setVisible(show);
+    lbl_compiler_flags->setVisible(show);
+    lbl_engine->setVisible(show);
+    lbl_make->setVisible(show);
+    adjustSize();
 }
