@@ -124,6 +124,37 @@ QString p_config_panel::get_project_name() {
     return le_name->text();
 }
 
+QString p_config_panel::get_project_working_dir() {
+    return le_working_dir->text();
+}
+
 void p_config_panel::set_project_name(QString name) {
     le_name->setText(name);
+}
+
+bool p_config_panel::load_config(const QJsonObject &config) {
+    if(config.contains("project_name") && config["project_name"].isString()) {
+        project_data::Instance()->prj_config[NAME] = config["project_name"].toString();
+        le_name->setText(project_data::Instance()->prj_config[NAME]);
+    }
+    if(config.contains("working_dir") && config["working_dir"].isString()) {
+        project_data::Instance()->prj_config[WORKING_DIR] = config["working_dir"].toString();
+        le_working_dir->setText(project_data::Instance()->prj_config[WORKING_DIR]);
+    }
+    if(config.contains("compiler") && config["compiler"].isString()) {
+        project_data::Instance()->prj_config[COMPILER_PATH] = config["compiler"].toString();
+        le_compiler->setText(project_data::Instance()->prj_config[COMPILER_PATH]);
+    }
+    if(config.contains("compiler_flags") && config["compiler_flags"].isString()) {
+        project_data::Instance()->prj_config[COMPILER_FLAGS] = config["compiler_flags"].toString();
+        le_compiler_flags->setText(project_data::Instance()->prj_config[COMPILER_FLAGS]);
+    }
+    if(config.contains("shmupgine") && config["shmupgine"].isString()) {
+        project_data::Instance()->prj_config[ENGINE_PATH] = config["shmupgine"].toString();
+        le_engine->setText(project_data::Instance()->prj_config[ENGINE_PATH]);
+    }
+    if(config.contains("make") && config["make"].isString()) {
+        project_data::Instance()->prj_config[MAKE_PATH] = config["make"].toString();
+        le_make->setText(project_data::Instance()->prj_config[MAKE_PATH]);
+    }
 }

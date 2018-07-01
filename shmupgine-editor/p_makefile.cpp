@@ -1,10 +1,12 @@
 #include "p_makefile.h"
+#include "p_config_panel.h"
 
 p_makefile::p_makefile(QWidget* parent) : QWidget(parent) {
     makefile = "";
     btn_generate    = new QPushButton(tr("Generate makefile"), this);
     te_text_area    = new QTextEdit(this);
     mainlayout      = new QVBoxLayout(this);
+    filename = "Makefile";
 
     mainlayout->addWidget(te_text_area);
     mainlayout->addWidget(btn_generate);
@@ -57,6 +59,10 @@ QString p_makefile::get_makefile() {
     return makefile;
 }
 
+QString p_makefile::get_filename() {
+    return filename;
+}
+
 void p_makefile::revert_changes() {
     te_text_area->setPlainText(makefile);
     emit_changes();
@@ -69,4 +75,21 @@ void p_makefile::save_changes() {
 
 void p_makefile::emit_changes() {
     emit changes_made(this, makefile != te_text_area->toPlainText());
+}
+
+bool p_makefile::load_makefile(const QJsonObject &config) {
+    if(config.contains("makefile") && config["makefile"].isString()) {
+        QFile in_makefile;
+        in_makefile.setFileName(QDir(p_config_panel::Instance()->get_project_working_dir()).filePath(config["makefile"].toString()));
+        if(in_makefile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            filename = in_makefile.fileName();
+            makefile = QString(in_makefile.readAll());
+            te_text_area->setText(makefile);
+            in_makefile.close();
+        } else {
+            qDebug() << in_makefile.fileName() << in_makefile.errorString();
+            return false;
+        }
+    } else
+        false;
 }

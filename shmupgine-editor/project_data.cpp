@@ -5,6 +5,7 @@ project_data::project_data() {
     prj_config[MAKE_PATH]       = DEFAULT_MAKE;
     prj_config[COMPILER_FLAGS]  = DEFAULT_CXXFLAGS;
     prj_config[COMPILER_PATH]   = DEFAULT_CXX;
+    prj_config_file = "project.json";
 }
 
 project_data::~project_data() {

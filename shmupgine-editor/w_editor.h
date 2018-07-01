@@ -13,8 +13,10 @@
 #include <QDockWidget>
 #include <QSettings>
 #include <QCloseEvent>
-
 #include <QHBoxLayout>
+#include <QFileDialog>
+#include <QJsonDocument>
+
 #include "singleton.h"
 
 #define WIDTH   720
@@ -26,6 +28,8 @@ class w_editor : public QMainWindow, public Singleton<w_editor> {
     friend class Singleton<w_editor>;
 
 public:
+    void open_project();
+    void save_project();
     void write_settings();
     void read_settings();
     void closeEvent(QCloseEvent *event);

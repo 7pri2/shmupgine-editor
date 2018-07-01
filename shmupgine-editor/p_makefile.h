@@ -5,6 +5,10 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QJsonObject>
+#include <QFile>
+#include <QDir>
+#include <QDebug>
 #include "project_data.h"
 #include "singleton.h"
 
@@ -13,7 +17,11 @@ class p_makefile : public QWidget, public Singleton<p_makefile> {
 
     Q_OBJECT
 public:
+    bool    load_makefile(const QJsonObject& config);
+
     QString get_makefile();
+    QString get_filename();
+
     void    save_changes();
     void    revert_changes();
 
@@ -33,6 +41,7 @@ private:
     QTextEdit*      te_text_area;
     QString         makefile;
     QVBoxLayout*    mainlayout;
+    QString         filename;
 };
 
 #endif // P_MAKEFILE_H

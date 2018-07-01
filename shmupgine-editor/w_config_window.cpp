@@ -33,6 +33,8 @@ w_config_window::w_config_window(QWidget* parent) : QWidget(parent)  {
     tab_widget->addTab(p_config_panel::Instance(), tr("&Project"));
     tab_widget->addTab(p_makefile::Instance(), tr("&Makefile"));
 
+    btn_save->setEnabled(false);
+
     connect(btn_close, SIGNAL(clicked(bool)), this, SLOT(revert_changes()));
     connect(btn_save, SIGNAL(clicked(bool)), this, SLOT(save_changes()));
     connect(p_config_panel::Instance(), SIGNAL(changes_made(QWidget*, bool)), this, SLOT(update_buttons(QWidget*, bool)));

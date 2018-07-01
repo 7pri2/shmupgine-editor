@@ -32,6 +32,7 @@ class project_data : public Singleton<project_data> {
 
 public:
     QString prj_config[6];
+    QString prj_config_file;
     bool    f_config_changed;
     int     entity_max_id;
 

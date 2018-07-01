@@ -121,6 +121,10 @@ void w_editor::handle_config_choice(QAction *a) {
 void w_editor::handle_file_choice(QAction *a) {
     if(a == a_new)
         w_new_project::Instance()->show();
+    else if(a == a_open)
+        open_project();
+    else if(a == a_save)
+        save_project();
 }
 
 void w_editor::handle_ressources_choice(QAction *a) {
@@ -193,4 +197,35 @@ void w_editor::read_settings() {
 void w_editor::closeEvent(QCloseEvent *event) {
     write_settings();
     event->accept();
+}
+
+void w_editor::open_project() {
+    QFile project_file;
+    project_file.setFileName(QFileDialog::getOpenFileName(this, tr("Open project file"), "", tr("JSON files (*.json)")));
+    if(project_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QJsonObject json_project = QJsonDocument::fromJson(project_file.readAll()).object();
+        if(json_project.contains("config") && json_project["config"].isObject()) {
+            p_config_panel::Instance()->load_config(json_project["config"].toObject());
+            p_makefile::Instance()->load_makefile(json_project["config"].toObject());
+        }
+        project_file.close();
+    }
+}
+
+void w_editor::save_project() {
+    QFile out_project_file(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project_data::Instance()->prj_config_file));
+    if(out_project_file.open(QIODevice::WriteOnly)) {
+        QJsonObject json_config;
+        json_config["project_name"] = project_data::Instance()->prj_config[NAME];
+        json_config["working_dir"] = project_data::Instance()->prj_config[WORKING_DIR];
+        json_config["compiler"] = project_data::Instance()->prj_config[COMPILER_PATH];
+        json_config["compiler_flags"] = project_data::Instance()->prj_config[COMPILER_FLAGS];
+        json_config["shmupgine"] = project_data::Instance()->prj_config[ENGINE_PATH];
+        json_config["make"] = project_data::Instance()->prj_config[MAKE_PATH];
+        json_config["makefile"] = p_makefile::Instance()->get_filename();
+        QJsonObject json_project;
+        json_project["config"] = json_config;
+        out_project_file.write(QJsonDocument(json_project).toJson());
+        out_project_file.close();
+    }
 }

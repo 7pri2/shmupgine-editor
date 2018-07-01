@@ -9,6 +9,7 @@
 #include <QCheckBox>
 #include <QDialog>
 #include <QPushButton>
+#include <QJsonObject>
 
 #include "project_data.h"
 #include "singleton.h"
@@ -19,7 +20,11 @@ class p_config_panel : public QWidget, public Singleton<p_config_panel> {
     Q_OBJECT
 
 public:
+    bool load_config(const QJsonObject &jso);
+
+    // Accessors
     QString get_project_name();
+    QString get_project_working_dir();
 
     void set_project_name(QString name);
 
