@@ -1,11 +1,12 @@
 #include "w_new_project.h"
 
-w_new_project::w_new_project(QWidget *parent) : QWidget(parent) {
+w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     /* * * * * * * * *
      * WINDOW TITLE  *
      * * * * * * * * */
 
     setWindowTitle(tr("Create new project"));
+    this->setModal(true);
 
     /* * * * * * * * * * *
      * MEMORY ALLOCATION *

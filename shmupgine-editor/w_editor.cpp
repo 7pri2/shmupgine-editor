@@ -196,6 +196,7 @@ void w_editor::read_settings() {
 
 void w_editor::closeEvent(QCloseEvent *event) {
     write_settings();
+    w_ressources::Instance()->close();
     event->accept();
 }
 

@@ -14,7 +14,7 @@
 #include "singleton.h"
 #include "project_data.h"
 
-class w_new_project : public QWidget, public Singleton<w_new_project> {
+class w_new_project : public QDialog, public Singleton<w_new_project> {
     Q_OBJECT
 
     friend class Singleton<w_new_project>;

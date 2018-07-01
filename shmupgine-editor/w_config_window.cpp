@@ -1,9 +1,11 @@
 #include "w_config_window.h"
 
-w_config_window::w_config_window(QWidget* parent) : QWidget(parent)  {
+w_config_window::w_config_window(QWidget* parent) : QDialog(parent)  {
     /* * * * * * * * * * *
      * MEMORY ALLOCATION *
      * * * * * * * * * * */
+
+    this->setModal(true);
 
     tab_widget  = new QTabWidget(this);
 

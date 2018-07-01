@@ -16,7 +16,7 @@ enum {
     makefile    = 1
 };
 
-class w_config_window : public QWidget, public Singleton<w_config_window> {
+class w_config_window : public QDialog, public Singleton<w_config_window> {
     friend class Singleton<w_config_window>;
     Q_OBJECT
 

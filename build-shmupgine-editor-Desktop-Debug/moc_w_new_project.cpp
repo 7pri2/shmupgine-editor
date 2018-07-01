@@ -83,7 +83,7 @@ void w_new_project::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
 }
 
 const QMetaObject w_new_project::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_w_new_project.data,
+    { &QDialog::staticMetaObject, qt_meta_stringdata_w_new_project.data,
       qt_meta_data_w_new_project,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -100,12 +100,12 @@ void *w_new_project::qt_metacast(const char *_clname)
         return static_cast<void*>(const_cast< w_new_project*>(this));
     if (!strcmp(_clname, "Singleton<w_new_project>"))
         return static_cast< Singleton<w_new_project>*>(const_cast< w_new_project*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QDialog::qt_metacast(_clname);
 }
 
 int w_new_project::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
