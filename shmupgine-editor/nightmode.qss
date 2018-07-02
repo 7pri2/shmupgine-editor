@@ -2,7 +2,7 @@
     color: lightgray;
 }
 
-QGraphicsView, QListView, QMenu, .background {
+QGraphicsView, QListView, QMenu, .background, QMessageBox {
     background-color: rgb(46, 47, 48);
 }
 
