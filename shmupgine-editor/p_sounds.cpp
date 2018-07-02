@@ -52,6 +52,7 @@ p_sounds::p_sounds(QWidget *parent) : QWidget(parent) {
     connect(btn_open, SIGNAL(clicked(bool)), this, SLOT(add_sound()));
     connect(btn_play, SIGNAL(clicked(bool)), this, SLOT(play_sound()));
     connect(btn_stop, SIGNAL(clicked(bool)), this, SLOT(stop_sound()));
+    connect(btn_delete, SIGNAL(clicked(bool)), this, SLOT(delete_sound()));
 }
 
 p_sounds::~p_sounds() {
@@ -73,16 +74,6 @@ void p_sounds::add_sound() {
         }
     }
     delete adw;
-}
-
-void p_sounds::append_sound(QString filename) {
-    QStandardItem* new_sound = new QStandardItem(filename);
-    new_sound->appendRow(new QStandardItem(filename));
-    if(tw_categories->currentIndex() == 0) {
-        sounds_model->appendRow(new_sound);
-    } else {
-        musics_model->appendRow(new_sound);
-    }
 }
 
 void p_sounds::play_sound() {
@@ -121,4 +112,27 @@ QString p_sounds::select_music() {
 
 bool p_sounds::load(const QJsonObject &config) {
 
+}
+
+void p_sounds::delete_sound() {
+    // We check if a song is selected
+    QListView* view = tw_categories->currentIndex() == SOUND ? lv_sounds : lv_musics;
+    QStandardItemModel* model = tw_categories->currentIndex() == SOUND ? sounds_model : musics_model;
+    if(view->currentIndex().row() >= 0) {
+        QMessageBox confirm;
+        QCheckBox remove_from_disk(tr("Remove from disk"), this);
+        confirm.setIcon(QMessageBox::Icon::Critical);
+        confirm.addButton(QMessageBox::Yes);
+        confirm.addButton(QMessageBox::No);
+        confirm.setDefaultButton(QMessageBox::No);
+        confirm.setText(tr("Are you sure you want to delete the selected audio file ?"));
+        confirm.setCheckBox(&remove_from_disk);
+        if(confirm.exec() == QMessageBox::Yes) {
+            if(remove_from_disk.isChecked()) {
+                QFile f(view->currentIndex().child(0, 0).data().toString());
+                f.remove();
+            }
+            model->removeRow(view->currentIndex().row());
+        }
+    }
 }

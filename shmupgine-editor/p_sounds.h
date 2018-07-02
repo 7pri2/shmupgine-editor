@@ -8,8 +8,10 @@
 #include <QListView>
 #include <QVBoxLayout>
 #include <QFileDialog>
+#include <QCheckBox>
 #include <QHBoxLayout>
 #include <QMediaPlayer>
+#include <QMessageBox>
 #include "singleton.h"
 #include "add_audio_window.h"
 #include "select_window.h"
@@ -30,13 +32,12 @@ public slots:
     void add_sound();
     void play_sound();
     void stop_sound();
+    void delete_sound();
 
 private:
     p_sounds(QWidget *parent = 0);
     p_sounds(const p_sounds&);
     virtual ~p_sounds();
-
-    void append_sound(QString filename);
 
     QListView*      lv_sounds;
     QListView*      lv_musics;

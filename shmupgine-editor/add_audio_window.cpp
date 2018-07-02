@@ -73,12 +73,9 @@ QStandardItem* add_audio_window::get_sound() {
             new_file.mkdir(dir);
             new_file.cd(dir);
         }
-        QFile::copy(le_path->text(), new_file.filePath(QFileInfo(le_path->text()).fileName()));
-        qDebug() << new_file.filePath(QFileInfo(le_path->text()).fileName());
-        new_sound->appendRow(new QStandardItem(new_file.filePath(QFileInfo(le_path->text()).fileName())));
-    } else {
-        new_sound->appendRow(new QStandardItem(le_path->text()));
+        QFile::copy(le_path->text(), le_path->text());
     }
+    new_sound->appendRow(new QStandardItem(le_path->text()));
     return new_sound;
 }
 
@@ -86,7 +83,7 @@ void add_audio_window::load_sound() {
     QString filename = QFileDialog::getOpenFileName(this, tr("Open sound file"), "", tr("Sounds (*.mp3 *.ogg *.wav)"));
     if(!filename.isEmpty()) {
         le_path->setText(filename);
-        le_title->setText(QFile(QDir(filename).path()).fileName());
+        le_title->setText(QFileInfo(filename).baseName());
     }
 }
 
