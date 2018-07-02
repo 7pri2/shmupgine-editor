@@ -11,6 +11,7 @@
 #include <QHBoxLayout>
 #include <QMediaPlayer>
 #include "singleton.h"
+#include "add_audio_window.h"
 #include "select_window.h"
 
 class p_sounds : public QWidget, public Singleton<p_sounds> {
@@ -21,11 +22,12 @@ class p_sounds : public QWidget, public Singleton<p_sounds> {
 public:
     QString select_sound_effect();
     QString select_music();
+    bool    load(const QJsonObject& json);
 
 signals:
 
 public slots:
-    void load_sound();
+    void add_sound();
     void play_sound();
     void stop_sound();
 

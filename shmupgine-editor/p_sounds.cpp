@@ -8,7 +8,7 @@ p_sounds::p_sounds(QWidget *parent) : QWidget(parent) {
     lv_sounds = new QListView(this);
     lv_musics = new QListView(this);
 
-    btn_open =  new QPushButton(tr("Open"), this);
+    btn_open =  new QPushButton(tr("Add"), this);
     btn_delete =new QPushButton(tr("Delete"), this);
     btn_play =  new QPushButton(tr("Play"), this);
     btn_stop =  new QPushButton(tr("Stop"), this);
@@ -49,7 +49,7 @@ p_sounds::p_sounds(QWidget *parent) : QWidget(parent) {
      * CONNECTIONS *
      * * * * * * * */
 
-    connect(btn_open, SIGNAL(clicked(bool)), this, SLOT(load_sound()));
+    connect(btn_open, SIGNAL(clicked(bool)), this, SLOT(add_sound()));
     connect(btn_play, SIGNAL(clicked(bool)), this, SLOT(play_sound()));
     connect(btn_stop, SIGNAL(clicked(bool)), this, SLOT(stop_sound()));
 }
@@ -58,10 +58,21 @@ p_sounds::~p_sounds() {
 
 }
 
-void p_sounds::load_sound() {
-     QString filename = QFileDialog::getOpenFileName(this, tr("Open sound file"), "", tr("Sounds (*.mp3 *.ogg *.wav)"));
-     if(!filename.isEmpty())
-         append_sound(filename);
+void p_sounds::add_sound() {
+    add_audio_window* adw;
+    if(tw_categories->currentIndex() == SOUND) {
+        adw = new add_audio_window(SOUND);
+    } else {
+        adw = new add_audio_window(MUSIC);
+    }
+    if(adw->exec()) {
+        if(tw_categories->currentIndex() == SOUND) {
+            sounds_model->appendRow(adw->get_sound());
+        } else {
+            musics_model->appendRow(adw->get_sound());
+        }
+    }
+    delete adw;
 }
 
 void p_sounds::append_sound(QString filename) {
@@ -106,4 +117,8 @@ QString p_sounds::select_music() {
         return "";
     }
     delete select;
+}
+
+bool p_sounds::load(const QJsonObject &config) {
+
 }

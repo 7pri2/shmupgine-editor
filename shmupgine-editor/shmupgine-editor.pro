@@ -22,7 +22,8 @@ SOURCES += \
     spawnslot.cpp \
     p_makefile.cpp \
     p_sounds.cpp \
-    w_build.cpp
+    w_build.cpp \
+    add_audio_window.cpp
 
 HEADERS += \
     project_data.h \
@@ -51,7 +52,8 @@ HEADERS += \
     spawnslot.h \
     p_makefile.h \
     p_sounds.h \
-    w_build.h
+    w_build.h \
+    add_audio_window.h
 
 QT += widgets \
     multimedia
