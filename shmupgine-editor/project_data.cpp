@@ -6,6 +6,7 @@ project_data::project_data() {
     prj_config[COMPILER_FLAGS]  = DEFAULT_CXXFLAGS;
     prj_config[COMPILER_PATH]   = DEFAULT_CXX;
     prj_config_file = "project.json";
+    audio_config_file = "audio.json";
 }
 
 project_data::~project_data() {

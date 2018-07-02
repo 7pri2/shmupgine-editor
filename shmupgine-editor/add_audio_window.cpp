@@ -58,8 +58,6 @@ QStandardItem* add_audio_window::get_sound() {
     QStandardItem* new_sound = new QStandardItem(le_title->text());
     if(chkbx_copy_it->isChecked()) {
         QDir new_file(p_config_panel::Instance()->get_project_working_dir());
-        qDebug() << new_file;
-        qDebug() << new_file.exists();
         if(!new_file.cd("res")) {
             new_file.mkdir(new_file.filePath("res"));
             new_file.cd("res");
@@ -73,9 +71,16 @@ QStandardItem* add_audio_window::get_sound() {
             new_file.mkdir(dir);
             new_file.cd(dir);
         }
-        QFile::copy(le_path->text(), le_path->text());
+        qDebug() << new_file.filePath(QFileInfo(le_path->text()).fileName());
+        QFile::copy(le_path->text(), new_file.filePath(QFileInfo(le_path->text()).fileName()));
     }
     new_sound->appendRow(new QStandardItem(le_path->text()));
+    return new_sound;
+}
+
+QStandardItem* add_audio_window::get_sound(QString title, QString path) {
+    QStandardItem* new_sound = new QStandardItem(title);
+    new_sound->appendRow(new QStandardItem(path));
     return new_sound;
 }
 

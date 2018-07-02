@@ -88,10 +88,10 @@ bool p_makefile::load(const QJsonObject &config) {
             makefile = QString(in_makefile.readAll());
             te_text_area->setText(makefile);
             in_makefile.close();
+            return true;
         } else {
-            qDebug() << in_makefile.fileName() << in_makefile.errorString();
             return false;
         }
     } else
-        false;
+        return false;
 }

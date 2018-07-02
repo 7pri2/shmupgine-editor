@@ -10,7 +10,9 @@
 #include <QFileDialog>
 #include <QCheckBox>
 #include <QHBoxLayout>
+#include <QJsonArray>
 #include <QMediaPlayer>
+#include <QJsonDocument>
 #include <QMessageBox>
 #include "singleton.h"
 #include "add_audio_window.h"
@@ -25,6 +27,7 @@ public:
     QString select_sound_effect();
     QString select_music();
     bool    load(const QJsonObject& json);
+    void    save();
 
 signals:
 

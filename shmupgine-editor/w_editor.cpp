@@ -205,13 +205,25 @@ void w_editor::closeEvent(QCloseEvent *event) {
 }
 
 void w_editor::open_project() {
-    QFile project_file;
-    project_file.setFileName(QFileDialog::getOpenFileName(this, tr("Open project file"), "", tr("JSON files (*.json)")));
+    QFile project_file(QFileDialog::getOpenFileName(this, tr("Open project file"), "", tr("JSON files (*.json)")));
+    project_data::Instance()->prj_config_file = project_file.fileName();
     if(project_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QJsonObject json_project = QJsonDocument::fromJson(project_file.readAll()).object();
         if(json_project.contains("config") && json_project["config"].isObject()) {
             p_config_panel::Instance()->load(json_project["config"].toObject());
             p_makefile::Instance()->load(json_project["config"].toObject());
+            if(json_project.contains("project") && json_project["project"].isObject()) {
+                QJsonObject project = json_project["project"].toObject();
+                if(project.contains("audio") && project["audio"].isString()) {
+                    QFile audio_file(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project["audio"].toString()));
+                    project_data::Instance()->audio_config_file = audio_file.fileName();
+                    if(audio_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                        QJsonObject json_audio = QJsonDocument::fromJson(audio_file.readAll()).object();
+                        p_sounds::Instance()->load(json_audio);
+                    }
+                    audio_file.close();
+                }
+            }
         }
         w_editor::Instance()->enable_editor(true);
         project_file.close();
@@ -231,9 +243,13 @@ void w_editor::save_project() {
         json_config["makefile"] = p_makefile::Instance()->get_filename();
         QJsonObject json_project;
         json_project["config"] = json_config;
+        QJsonObject json_project_files;
+        json_project_files["audio"] = project_data::Instance()->audio_config_file;
+        json_project["project"] = json_project_files;
         out_project_file.write(QJsonDocument(json_project).toJson());
         out_project_file.close();
     }
+    p_sounds::Instance()->save();
 }
 
 void w_editor::enable_editor(bool enable) {

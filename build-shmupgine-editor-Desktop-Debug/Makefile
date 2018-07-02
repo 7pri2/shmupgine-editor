@@ -503,6 +503,7 @@ moc_attr_destructor.cpp: ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -525,6 +526,7 @@ moc_attr_graphic_renderer.cpp: ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -582,6 +584,7 @@ moc_attr_spawner.cpp: ../shmupgine-editor/attribute.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -603,6 +606,7 @@ moc_p_groups.cpp: ../shmupgine-editor/singleton.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -634,6 +638,7 @@ moc_spawnslot.cpp: ../shmupgine-editor/attribute.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -650,6 +655,9 @@ moc_p_makefile.cpp: ../shmupgine-editor/project_data.h \
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cyprien/Documents/Informatique/shmupgine-editor/shmupgine-editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtMultimedia -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/6 -I/usr/include/x86_64-linux-gnu/c++/6 -I/usr/include/c++/6/backward -I/usr/lib/gcc/x86_64-linux-gnu/6/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/6/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../shmupgine-editor/p_makefile.h -o moc_p_makefile.cpp
 
 moc_p_sounds.cpp: ../shmupgine-editor/singleton.h \
+		../shmupgine-editor/add_audio_window.h \
+		../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
 		../shmupgine-editor/select_window.h \
 		../shmupgine-editor/p_sounds.h \
 		/usr/lib/x86_64-linux-gnu/qt5/bin/moc
@@ -693,6 +701,7 @@ main.o: ../shmupgine-editor/main.cpp ../shmupgine-editor/windows_panels.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -723,6 +732,7 @@ w_editor.o: ../shmupgine-editor/w_editor.cpp ../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
 		../shmupgine-editor/w_config_window.h \
@@ -755,6 +765,7 @@ entities_attributes_panel.o: ../shmupgine-editor/entities_attributes_panel.cpp .
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -788,6 +799,7 @@ attr_destructor.o: ../shmupgine-editor/attr_destructor.cpp ../shmupgine-editor/a
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -809,6 +821,7 @@ attr_graphic_renderer.o: ../shmupgine-editor/attr_graphic_renderer.cpp ../shmupg
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -855,6 +868,7 @@ w_ressources.o: ../shmupgine-editor/w_ressources.cpp ../shmupgine-editor/w_resso
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_new_project.h \
 		../shmupgine-editor/w_config_window.h \
@@ -875,6 +889,7 @@ attr_spawner.o: ../shmupgine-editor/attr_spawner.cpp ../shmupgine-editor/attr_sp
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -895,6 +910,7 @@ p_groups.o: ../shmupgine-editor/p_groups.cpp ../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_entities_editor.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -924,6 +940,7 @@ spawnslot.o: ../shmupgine-editor/spawnslot.cpp ../shmupgine-editor/spawnslot.h \
 		../shmupgine-editor/p_groups.h \
 		../shmupgine-editor/p_makefile.h \
 		../shmupgine-editor/p_sounds.h \
+		../shmupgine-editor/add_audio_window.h \
 		../shmupgine-editor/w_editor.h \
 		../shmupgine-editor/w_ressources.h \
 		../shmupgine-editor/w_new_project.h \
@@ -939,6 +956,9 @@ p_makefile.o: ../shmupgine-editor/p_makefile.cpp ../shmupgine-editor/p_makefile.
 
 p_sounds.o: ../shmupgine-editor/p_sounds.cpp ../shmupgine-editor/p_sounds.h \
 		../shmupgine-editor/singleton.h \
+		../shmupgine-editor/add_audio_window.h \
+		../shmupgine-editor/p_config_panel.h \
+		../shmupgine-editor/project_data.h \
 		../shmupgine-editor/select_window.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o p_sounds.o ../shmupgine-editor/p_sounds.cpp
 

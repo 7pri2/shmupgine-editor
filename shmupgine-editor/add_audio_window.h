@@ -26,6 +26,7 @@ class add_audio_window : public QDialog {
 public:
     explicit add_audio_window(int type);
     QStandardItem*  get_sound();
+    static QStandardItem* get_sound(QString title, QString path);
 
 signals:
 

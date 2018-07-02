@@ -111,7 +111,31 @@ QString p_sounds::select_music() {
 }
 
 bool p_sounds::load(const QJsonObject &config) {
-
+    if(config.contains("sounds") && config["sounds"].isArray()) {
+        QJsonArray sounds = config["sounds"].toArray();
+        for(int i = 0; i < sounds.size(); ++i) {
+            if(sounds[i].isObject()) {
+                QJsonObject sound = sounds[i].toObject();
+                if(sound.contains("title") && sound["title"].isString()
+                    && sound.contains("path") && sound["path"].isString()) {
+                    sounds_model->appendRow(add_audio_window::get_sound(sound["title"].toString(), sound["path"].toString()));
+                }
+            }
+        }
+    }
+    if(config.contains("musics") && config["musics"].isArray()){
+        QJsonArray musics = config["musics"].toArray();
+        for(int i = 0; i < musics.size(); ++i) {
+            if(musics[i].isObject()) {
+                QJsonObject music = musics[i].toObject();
+                if(music.contains("title") && music["title"].isString()
+                    && music.contains("path") && music["path"].isString()) {
+                    musics_model->appendRow(add_audio_window::get_sound(music["title"].toString(), music["path"].toString()));
+                }
+            }
+        }
+    }
+    return true;
 }
 
 void p_sounds::delete_sound() {
@@ -134,5 +158,33 @@ void p_sounds::delete_sound() {
             }
             model->removeRow(view->currentIndex().row());
         }
+    }
+}
+
+void p_sounds::save() {
+    QFile out_audio(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project_data::Instance()->audio_config_file));
+    if(out_audio.open(QIODevice::WriteOnly)) {
+        QJsonArray json_sounds;
+        for(int i = 0; i < sounds_model->rowCount(); ++i) {
+            qDebug() << i << "/" << sounds_model->rowCount();
+            QJsonObject sound;
+            sound["title"] = sounds_model->index(i, 0).data().toString();
+            sound["path"] = sounds_model->index(i, 0).child(0, 0).data().toString();
+            qDebug() << sound["title"] << sound["path"];
+            json_sounds.append(sound);
+        }
+        QJsonArray json_musics;
+        for(int i = 0; i < musics_model->rowCount(); ++i) {
+            QJsonObject music;
+            music["title"] = musics_model->index(i, 0).data().toString();
+            music["path"] = musics_model->index(i, 0).child(0, 0).data().toString();
+            qDebug() << musics_model->index(i, 0).data().toString() << musics_model->index(i, 0).child(0, 0).data().toString();
+            json_musics.append(music);
+        }
+        QJsonObject json_audio;
+        json_audio["sounds"] = json_sounds;
+        json_audio["musics"] = json_musics;
+        out_audio.write(QJsonDocument(json_audio).toJson());
+        out_audio.close();
     }
 }
