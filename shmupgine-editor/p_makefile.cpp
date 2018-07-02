@@ -79,7 +79,7 @@ void p_makefile::emit_changes() {
     emit changes_made(this, makefile != te_text_area->toPlainText());
 }
 
-bool p_makefile::load_makefile(const QJsonObject &config) {
+bool p_makefile::load(const QJsonObject &config) {
     if(config.contains("makefile") && config["makefile"].isString()) {
         QFile in_makefile;
         in_makefile.setFileName(QDir(p_config_panel::Instance()->get_project_working_dir()).filePath(config["makefile"].toString()));

@@ -132,7 +132,7 @@ void p_config_panel::set_project_name(QString name) {
     le_name->setText(name);
 }
 
-bool p_config_panel::load_config(const QJsonObject &config) {
+bool p_config_panel::load(const QJsonObject &config) {
     if(config.contains("project_name") && config["project_name"].isString()) {
         project_data::Instance()->prj_config[NAME] = config["project_name"].toString();
         le_name->setText(project_data::Instance()->prj_config[NAME]);

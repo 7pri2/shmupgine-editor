@@ -20,7 +20,7 @@ class p_config_panel : public QWidget, public Singleton<p_config_panel> {
     Q_OBJECT
 
 public:
-    bool load_config(const QJsonObject &jso);
+    bool load(const QJsonObject &config);
 
     // Accessors
     QString get_project_name();

@@ -45,13 +45,13 @@ select_window::select_window(QString title, QStandardItemModel* model) : QDialog
     connect(listview, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
 }
 
-select_window ::~select_window () {}
+select_window::~select_window () {}
 
-void select_window ::item_selected() {
+void select_window::item_selected() {
     btn_ok->setEnabled(true);
 }
 
-QString select_window ::get_selected_item(int row) {
+QString select_window::get_selected_item(int row) {
     if(row == -1)
         return listview->currentIndex().data().toString();
     else

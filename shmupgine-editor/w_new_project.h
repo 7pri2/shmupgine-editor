@@ -21,6 +21,7 @@ class w_new_project : public QDialog, public Singleton<w_new_project> {
     friend class Singleton<w_new_project>;
 
 public:
+    QString default_path_dialog;
 
 private slots:
     void    show_details(bool show);

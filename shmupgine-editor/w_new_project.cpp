@@ -109,6 +109,7 @@ w_new_project::w_new_project(QWidget *parent) : QDialog(parent) {
     this->setMinimumWidth(280);
     lbl_error->hide();
     lbl_error->setProperty("class", "error");
+    default_path_dialog = QDir::home().path();
 
     /* * * * * * * *
      * CONNECTIONS *
@@ -166,7 +167,6 @@ void w_new_project::create_new_project() {
     // We need to know if the user already created a new directory for the project or not
     if(wd.exists()) {
         if(wd.dirName() == project_data::Instance()->prj_config[NAME]) { // Already created by user
-            wd.cd(".."); // We change the working directory to its parent
             project_data::Instance()->prj_config[WORKING_DIR] = wd.path();
         } else { // We create the directory
             root.mkpath(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project_data::Instance()->prj_config[NAME]));
@@ -237,6 +237,7 @@ void w_new_project::choose_make_path() {
 void w_new_project::choose_working_dir() {
     le_working_dir->setText(QFileDialog::getExistingDirectory(this,
                                           tr("Choose project directory"),
-                                          QDir::homePath(),
+                                          default_path_dialog,
                                           QFileDialog::ShowDirsOnly));
+    default_path_dialog = le_working_dir->text();
 }

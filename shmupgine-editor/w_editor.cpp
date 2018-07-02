@@ -177,6 +177,8 @@ void w_editor::write_settings() {
     settings.setValue("ent_dock_floating", dock_entities->isFloating());
     settings.setValue("ent_dock_position", dock_entities->pos());
     settings.setValue("ent_dock_size", dock_entities->size());
+    settings.setValue("ent_dock_size", dock_entities->size());
+    settings.setValue("default_path_dialog", w_new_project::Instance()->default_path_dialog);
     settings.endGroup();
 }
 
@@ -192,6 +194,7 @@ void w_editor::read_settings() {
     dock_attributes->move(settings.value("ent_dock_position").toPoint());
     dock_attributes->resize(settings.value("ent_dock_size").toSize());
     dock_attributes->setFloating(settings.value("ent_dock_floating", false).toBool());
+    w_new_project::Instance()->default_path_dialog = settings.value("default_path_dialog", QDir::home().path()).toString();
     settings.endGroup();
 }
 
@@ -207,8 +210,8 @@ void w_editor::open_project() {
     if(project_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QJsonObject json_project = QJsonDocument::fromJson(project_file.readAll()).object();
         if(json_project.contains("config") && json_project["config"].isObject()) {
-            p_config_panel::Instance()->load_config(json_project["config"].toObject());
-            p_makefile::Instance()->load_makefile(json_project["config"].toObject());
+            p_config_panel::Instance()->load(json_project["config"].toObject());
+            p_makefile::Instance()->load(json_project["config"].toObject());
         }
         w_editor::Instance()->enable_editor(true);
         project_file.close();

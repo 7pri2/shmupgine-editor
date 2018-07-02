@@ -17,7 +17,7 @@ class p_makefile : public QWidget, public Singleton<p_makefile> {
 
     Q_OBJECT
 public:
-    bool    load_makefile(const QJsonObject& config);
+    bool    load(const QJsonObject& config);
 
     QString get_makefile();
     QString get_filename();
