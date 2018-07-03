@@ -73,8 +73,10 @@ QStandardItem* add_audio_window::get_sound() {
         }
         qDebug() << new_file.filePath(QFileInfo(le_path->text()).fileName());
         QFile::copy(le_path->text(), new_file.filePath(QFileInfo(le_path->text()).fileName()));
+        new_sound->appendRow(new QStandardItem(new_file.filePath(QFileInfo(le_path->text()).fileName())));
+    } else {
+        new_sound->appendRow(new QStandardItem(le_path->text()));
     }
-    new_sound->appendRow(new QStandardItem(le_path->text()));
     return new_sound;
 }
 

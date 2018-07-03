@@ -73,6 +73,11 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     m_build->addAction(a_build);
     m_build->addAction(a_build_and_run);
 
+    /// Shortcuts
+    a_new->setShortcut(Qt::CTRL + Qt::Key_N);
+    a_open->setShortcut(Qt::CTRL + Qt::Key_O);
+    a_save->setShortcut(Qt::CTRL + Qt::Key_S);
+
     /* * * * * * * * * * *
      * WINDOW MANGEMENT  *
      * * * * * * * * * * */
