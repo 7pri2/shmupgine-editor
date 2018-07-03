@@ -79,7 +79,12 @@ QStandardItem* add_image_window::get_image() {
 
 QStandardItem* add_image_window::get_image(QString title, QString path) {
     QStandardItem* new_image = new QStandardItem(title);
+    QPixmap img;
+    img.load(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(path));
+    new_image->setIcon(QIcon(img));
     new_image->appendRow(new QStandardItem(path));
+    new_image->appendRow(new QStandardItem(QString::number(img.width())));   // width
+    new_image->appendRow(new QStandardItem(QString::number(img.height())));  // height
     return new_image;
 }
 

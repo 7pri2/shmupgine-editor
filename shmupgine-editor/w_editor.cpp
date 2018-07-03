@@ -224,6 +224,7 @@ void w_editor::open_project() {
             p_makefile::Instance()->load(json_project["config"].toObject());
             if(json_project.contains("project") && json_project["project"].isObject()) {
                 QJsonObject project = json_project["project"].toObject();
+                // Audio
                 if(project.contains("audio") && project["audio"].isString()) {
                     QFile audio_file(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project["audio"].toString()));
                     project_data::Instance()->audio_config_file = audio_file.fileName();
@@ -232,6 +233,16 @@ void w_editor::open_project() {
                         p_sounds::Instance()->load(json_audio);
                     }
                     audio_file.close();
+                }
+                // Graphics
+                if(project.contains("graphics") && project["graphics"].isString()) {
+                    QFile graphics_file(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project["graphics"].toString()));
+                    project_data::Instance()->graphics_config_file = graphics_file.fileName();
+                    if(graphics_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                        QJsonArray json_graphics = QJsonDocument::fromJson(graphics_file.readAll()).array();
+                        p_graphics_manager::Instance()->load(json_graphics);
+                    }
+                    graphics_file.close();
                 }
             }
         }
@@ -255,11 +266,13 @@ void w_editor::save_project() {
         json_project["config"] = json_config;
         QJsonObject json_project_files;
         json_project_files["audio"] = project_data::Instance()->audio_config_file;
+        json_project_files["graphics"] = project_data::Instance()->graphics_config_file;
         json_project["project"] = json_project_files;
         out_project_file.write(QJsonDocument(json_project).toJson());
         out_project_file.close();
     }
     p_sounds::Instance()->save();
+    p_graphics_manager::Instance()->save();
 }
 
 void w_editor::enable_editor(bool enable) {

@@ -13,8 +13,11 @@
 #include <QStandardItemModel>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QJsonDocument>
 #include <QListView>
 #include <QMessageBox>
+#include <QJsonArray>
+#include <QJsonObject>
 #include "project_data.h"
 #include "singleton.h"
 #include "select_window.h"
@@ -35,6 +38,8 @@ public:
     QString select_picture();
     QString get_picture_path(QString pic_name);
     QString getCode();
+    bool    load(const QJsonArray& json);
+    void    save();
 
 private slots:
     void add_picture();

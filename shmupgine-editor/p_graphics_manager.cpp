@@ -184,3 +184,31 @@ QString p_graphics_manager::get_picture_path(QString pic_name) {
             return pictures_model->index(i,0).child(PIC_PATH,0).data().toString();
     return "";
 }
+
+bool p_graphics_manager::load(const QJsonArray &json) {
+    for(int i = 0; i < json.size(); ++i) {
+        if(json[i].isObject()) {
+            QJsonObject picture = json[i].toObject();
+            if(picture.contains("name") && picture["title"].isString()
+                && picture.contains("path") && picture["path"].isString()) {
+                pictures_model->appendRow(add_image_window::get_image(picture["name"].toString(), picture["path"].toString()));
+            }
+        }
+    }
+    return true;
+}
+
+void p_graphics_manager::save() {
+    QFile out_pictures(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project_data::Instance()->graphics_config_file));
+    if(out_pictures.open(QIODevice::WriteOnly)) {
+        QJsonArray json_pictures;
+        for(int i = 0; i < pictures_model->rowCount(); ++i) {
+            QJsonObject picture;
+            picture["name"] = pictures_model->index(i, 0).data().toString();
+            picture["path"] = pictures_model->index(i, 0).child(0, 0).data().toString();
+            json_pictures.append(picture);
+        }
+        out_pictures.write(QJsonDocument(json_pictures).toJson());
+        out_pictures.close();
+    }
+}
