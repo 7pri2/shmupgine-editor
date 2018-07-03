@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTabWidget>
 #include <QPushButton>
+#include <QSignalMapper>
 #include <QVBoxLayout>
 #include "singleton.h"
 
@@ -30,6 +31,11 @@ private:
     QTabWidget*     tabs;
     QPushButton*    btn_close;
     QVBoxLayout*    lay_mainlayout;
+
+    QAction*        a_graphics_manager;
+    QAction*        a_entities_collection;
+    QAction*        a_groups;
+    QAction*        a_sounds_manager;
 };
 
 #endif // W_RESSOURCES_H

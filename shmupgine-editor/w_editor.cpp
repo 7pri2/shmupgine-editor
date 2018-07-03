@@ -78,6 +78,11 @@ w_editor::w_editor(QWidget *parent) : QMainWindow(parent){
     a_open->setShortcut(Qt::CTRL + Qt::Key_O);
     a_save->setShortcut(Qt::CTRL + Qt::Key_S);
 
+    a_graphics->setShortcut(Qt::Key_F1);
+    a_entities_collection->setShortcut(Qt::Key_F2);
+    a_groups->setShortcut(Qt::Key_F3);
+    a_sounds->setShortcut(Qt::Key_F4);
+
     /* * * * * * * * * * *
      * WINDOW MANGEMENT  *
      * * * * * * * * * * */
@@ -265,4 +270,8 @@ void w_editor::enable_editor(bool enable) {
     m_build->setEnabled(enable);
     a_save->setEnabled(enable);
     a_close->setEnabled(enable);
+    a_graphics->setEnabled(enable);
+    a_entities_collection->setEnabled(enable);
+    a_sounds->setEnabled(enable);
+    a_groups->setEnabled(enable);
 }

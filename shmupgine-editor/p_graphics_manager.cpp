@@ -89,9 +89,11 @@ p_graphics_manager::~p_graphics_manager() {
 }
 
 void p_graphics_manager::add_picture() {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open picture"), "", tr("Pictures (*.png *.jpg)"));
-    if(!filename.isEmpty())
-        append_picture(filename);
+    add_image_window* aiw = new add_image_window();
+    if(aiw->exec()) {
+        pictures_model->appendRow(aiw->get_image());
+    }
+    delete aiw;
 }
 
 void p_graphics_manager::fill_infos(QModelIndex index) {
@@ -141,16 +143,6 @@ void p_graphics_manager::dis_or_enable_details() {
     le_path->setEnabled(id_state);
     le_width->setEnabled(id_state);
     btn_remove->setEnabled(id_state);
-}
-
-void p_graphics_manager::append_picture(QString filename) {
-    QPixmap file = QPixmap(filename);
-    QStandardItem* picture = new QStandardItem(filename);
-    pictures_model->appendRow(picture);  // name
-    picture->setIcon(QIcon(file));
-    picture->appendRow(new QStandardItem(filename));   // path
-    picture->appendRow(new QStandardItem(QString::number(file.width())));   // width
-    picture->appendRow(new QStandardItem(QString::number(file.height())));  // height
 }
 
 QString p_graphics_manager::select_picture() {

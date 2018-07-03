@@ -23,7 +23,8 @@ SOURCES += \
     p_makefile.cpp \
     p_sounds.cpp \
     w_build.cpp \
-    add_audio_window.cpp
+    add_audio_window.cpp \
+    add_image_window.cpp
 
 HEADERS += \
     project_data.h \
@@ -53,7 +54,8 @@ HEADERS += \
     p_makefile.h \
     p_sounds.h \
     w_build.h \
-    add_audio_window.h
+    add_audio_window.h \
+    add_image_window.h
 
 QT += widgets \
     multimedia

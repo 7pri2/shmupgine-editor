@@ -18,6 +18,7 @@
 #include "project_data.h"
 #include "singleton.h"
 #include "select_window.h"
+#include "add_image_window.h"
 
 enum {
     PIC_PATH    = 0,
@@ -42,7 +43,6 @@ private slots:
     void update_model();
     void delete_picture();
     void dis_or_enable_details();
-    void append_picture(QString filename);
 
 private:
     p_graphics_manager(QWidget *parent = 0);
