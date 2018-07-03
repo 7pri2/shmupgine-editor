@@ -14,7 +14,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QListView>
-
+#include <QMessageBox>
 #include "project_data.h"
 #include "singleton.h"
 #include "select_window.h"

@@ -3,7 +3,7 @@
 add_image_window::add_image_window() {
     le_title    = new QLineEdit(this);
     le_path     = new QLineEdit(this);
-    lbl_title   = new QLabel(tr("Title"), this);
+    lbl_title   = new QLabel(tr("Name"), this);
     lbl_path    = new QLabel(tr("Path"), this);
     btn_load    = new QPushButton("...", this);
     btn_ok      = new QPushButton("Ok", this);
@@ -61,9 +61,9 @@ QStandardItem* add_image_window::get_image() {
             new_file.mkdir(new_file.filePath("res"));
             new_file.cd("res");
         }
-        if(!new_file.cd("image")) {
-            new_file.mkdir("image");
-            new_file.cd("image");
+        if(!new_file.cd("graphics")) {
+            new_file.mkdir("graphics");
+            new_file.cd("graphics");
         }
         qDebug() << new_file.filePath(QFileInfo(le_path->text()).fileName());
         QFile::copy(le_path->text(), new_file.filePath(QFileInfo(le_path->text()).fileName()));

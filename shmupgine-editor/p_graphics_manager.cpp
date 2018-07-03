@@ -124,9 +124,21 @@ void p_graphics_manager::update_model() {
 }
 
 void p_graphics_manager::delete_picture() {
-    for(int i = 0; i < pictures_model->rowCount(); ++i)
-        if(pictures_model->index(i,0) == current_selection)
-            pictures_model->removeRow(current_selection.row());
+    QMessageBox confirm;
+    QCheckBox remove_from_disk(tr("Remove from disk"), this);
+    confirm.setIcon(QMessageBox::Icon::Critical);
+    confirm.addButton(QMessageBox::Yes);
+    confirm.addButton(QMessageBox::No);
+    confirm.setDefaultButton(QMessageBox::No);
+    confirm.setText(tr("Are you sure you want to delete the selected picture ?"));
+    confirm.setCheckBox(&remove_from_disk);
+    if(confirm.exec() == QMessageBox::Yes) {
+        if(remove_from_disk.isChecked()) {
+            QFile f(lv_pictures_view->currentIndex().child(0, 0).data().toString());
+            f.remove();
+        }
+        pictures_model->removeRow(lv_pictures_view->currentIndex().row());
+    }
     fill_infos(lv_pictures_view->currentIndex());
     dis_or_enable_details();
 }
