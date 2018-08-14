@@ -244,6 +244,16 @@ void w_editor::open_project() {
                     }
                     graphics_file.close();
                 }
+                // Entities
+                if(project.contains("entities") && project["entities"].isString()) {
+                    QFile entities_file(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project["entities"].toString()));
+                    project_data::Instance()->entities_config_file = entities_file.fileName();
+                    if(entities_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                        QJsonArray json_entities = QJsonDocument::fromJson(entities_file.readAll()).array();
+                        p_entities_editor::Instance()->load(json_entities);
+                    }
+                    entities_file.close();
+                }
             }
         }
         w_editor::Instance()->enable_editor(true);
@@ -267,12 +277,14 @@ void w_editor::save_project() {
         QJsonObject json_project_files;
         json_project_files["audio"] = project_data::Instance()->audio_config_file;
         json_project_files["graphics"] = project_data::Instance()->graphics_config_file;
+        json_project_files["entities"] = project_data::Instance()->entities_config_file;
         json_project["project"] = json_project_files;
         out_project_file.write(QJsonDocument(json_project).toJson());
         out_project_file.close();
     }
     p_sounds::Instance()->save();
     p_graphics_manager::Instance()->save();
+    p_entities_editor::Instance()->save();
 }
 
 void w_editor::enable_editor(bool enable) {

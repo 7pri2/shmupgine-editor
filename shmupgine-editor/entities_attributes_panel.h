@@ -1,16 +1,19 @@
 #ifndef ENTITIES_ATTRIBUTES_PANEL_H
 #define ENTITIES_ATTRIBUTES_PANEL_H
 
-#include <QStandardItemModel>
+#include <list>
+#include <QMenu>
+#include <QAction>
+#include <QWidget>
+#include <QListView>
+#include <QJsonArray>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QScrollArea>
-#include <QListView>
-#include <QAction>
-#include <QWidget>
-#include <QMenu>
-#include <list>
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QStandardItemModel>
 
 class attribute;
 
@@ -20,7 +23,7 @@ public:
     entities_attributes_panel(QWidget* parent = 0);
     ~entities_attributes_panel();
 
-    QString select_entity();
+    QString     select_entity();
     QWidget*    get_entities_panel();
     QWidget*    get_attributes_panel();
     bool        check_entity(QString entity);
@@ -28,6 +31,8 @@ public:
     QStringList get_entities_names();
 
     QString     getCode();
+    bool        load(const QJsonArray& entites);
+    void        save();
 
 public slots:
     // ATTRIBUTES
@@ -46,6 +51,8 @@ protected slots:
 
 protected:
     // ENTITIES
+    int  new_clear_entity(QString name);    // Entity without properties
+
     QWidget*        entities_widget;
     QPushButton*    btn_new_entity;
     QPushButton*    btn_delete_entity;
@@ -62,6 +69,7 @@ protected:
 
     void add_attribute(attribute* attr);
     void add_attribute(int id, attribute* attr); // pour new_entity()
+    std::list<attribute*> list_all_attributes(int id);
     void remove_all_attributes(int entity_id);
 
     QWidget*        attributes_widget;

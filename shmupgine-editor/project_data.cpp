@@ -8,6 +8,7 @@ project_data::project_data() {
     prj_config_file = "project.json";
     audio_config_file = "audio.json";
     graphics_config_file = "graphics.json";
+    entities_config_file = "entities.json";
 }
 
 project_data::~project_data() {

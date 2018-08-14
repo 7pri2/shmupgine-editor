@@ -92,11 +92,12 @@ void entities_attributes_panel::remove_entity() {
 }
 
 void entities_attributes_panel::remove_all_attributes(int entity_id) {
-    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
+    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end();)
         if((*it)->getId_parent() == entity_id) {
             (*it)->delete_attribute();
-            it = attr_list.begin();
-        }
+            it = attr_list.erase(it);
+        } else
+            ++it;
 }
 
 void entities_attributes_panel::new_entity() {
@@ -105,6 +106,14 @@ void entities_attributes_panel::new_entity() {
     item->appendRow(new QStandardItem(QString::number(project_data::Instance()->entity_max_id)));
     entities_model->appendRow(item);
     add_attribute(project_data::Instance()->entity_max_id, new attr_properties(this));
+}
+
+int entities_attributes_panel::new_clear_entity(QString name) {
+    project_data::Instance()->entity_max_id += 1;
+    QStandardItem* item = new QStandardItem(name);
+    item->appendRow(new QStandardItem(QString::number(project_data::Instance()->entity_max_id)));
+    entities_model->appendRow(item);
+    return project_data::Instance()->entity_max_id;
 }
 
 void entities_attributes_panel::update_what_is_visible() {
@@ -237,4 +246,81 @@ void entities_attributes_panel::change_scroll_perspective(Qt::DockWidgetArea np)
     }
     }
     */
+}
+
+bool entities_attributes_panel::load(const QJsonArray &entites) {
+    for(int i = 0; i < entites.size(); ++i) {
+        QJsonObject en = entites[i].toObject();
+        if(en.contains("name")) {
+            int id = new_clear_entity(en.value("name").toString());
+            // Load its properties
+            if(en.contains("position")) {
+                attr_properties* p = new attr_properties(this);
+                if(!p->load(en.value("position").toObject()))
+                    return false;
+
+                add_attribute(id, p);
+
+                // Then load its attributes
+                if(en.contains("attributes")) {
+                    QJsonArray attrs = en.value("attributes").toArray();
+                    for(int j = 0; j < attrs.size(); ++j) {
+                        QJsonObject attr_current = attrs[j].toObject();
+                        if(attr_current.contains("type")) {
+                            attribute* a;
+                            if(attr_current.value("type").toString() == "destructor") {
+                                a = new attr_destructor(this);
+                            } else if(attr_current.value("type").toString() == "graphicsrenderer") {
+                                a = new attr_graphic_renderer(this);
+                            } else if(attr_current.value("type").toString() == "controls") {
+                                a = new attr_controls(this);
+                            } else if(attr_current.value("type").toString() == "physics") {
+                                a = new attr_physics(this);
+                            } else if(attr_current.value("type").toString() == "spawner") {
+                                a = new attr_spawner(this);
+                            } else {
+                                return false;
+                            }
+                            if(!a->load(attr_current))
+                                return false;
+                            add_attribute(id, a);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+void entities_attributes_panel::save() {
+    QFile out_entities(QDir(project_data::Instance()->prj_config[WORKING_DIR]).filePath(project_data::Instance()->entities_config_file));
+    if(out_entities.open(QIODevice::WriteOnly)) {
+        QJsonArray array;
+        for(int i = 0; i < entities_model->rowCount(); ++i) {
+            QJsonObject o;
+            QJsonArray attrjson;
+            o["name"] = entities_model->index(i,0).data().toString();
+            int id = entities_model->index(i,0).child(0,0).data().toInt();
+            std::list<attribute*> attrs = list_all_attributes(id);
+            for(std::list<attribute*>::iterator it = attrs.begin(); it != attrs.end(); ++it) {
+                if(dynamic_cast<attr_properties*>(*it) != NULL)
+                    o["position"] = (*it)->save();
+                else
+                    attrjson.append((*it)->save());
+            }
+            o["attributes"] = attrjson;
+            array.append(o);
+        }
+        out_entities.write(QJsonDocument(array).toJson());
+        out_entities.close();
+    }
+}
+
+std::list<attribute*> entities_attributes_panel::list_all_attributes(int id) {
+    std::list<attribute*> attrs;
+    for(std::list<attribute*>::iterator it = attr_list.begin(); it != attr_list.end(); ++it)
+        if((*it)->getId_parent() == id) {
+            attrs.push_back(*it);
+        }
+    return attrs;
 }

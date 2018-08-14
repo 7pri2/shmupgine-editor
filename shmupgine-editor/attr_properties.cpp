@@ -71,3 +71,22 @@ int attr_properties::getPosY() {
 bool attr_properties::verify_validity() {
     return !le_x->text().isEmpty() && !le_y->text().isEmpty();
 }
+
+bool attr_properties::load(const QJsonObject &json) {
+    if(json.contains("x"))
+        le_x->setText(QString::number(json.value("x").toInt()));
+    else
+        return false;
+    if(json.contains("y"))
+        le_y->setText(QString::number(json.value("y").toInt()));
+    else
+        return false;
+    return true;
+}
+
+QJsonObject attr_properties::save() {
+    QJsonObject o;
+    o["x"] = le_x->text().toInt();
+    o["y"] = le_y->text().toInt();
+    return o;
+}

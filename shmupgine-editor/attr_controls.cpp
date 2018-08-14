@@ -40,3 +40,25 @@ QString attr_controls::getCode() {
 bool attr_controls::verify_validity() {
     return !le_move_speed->text().isEmpty();
 }
+
+bool attr_controls::load(const QJsonObject &json) {
+    attribute::load(json);
+    if(json.contains("fields")) {
+        QJsonObject fields = json.value("fields").toObject();
+        if(fields.contains("move_speed"))
+            le_move_speed->setText(QString::number(fields.value("move_speed").toInt()));
+        else
+            return false;
+    } else
+        return false;
+    return true;
+}
+
+QJsonObject attr_controls::save() {
+    QJsonObject object = attribute::save();
+    object["type"] = "controls";
+    QJsonObject fields;
+    fields["move_speed"] = le_move_speed->text().toInt();
+    object["fields"] = fields;
+    return object;
+}

@@ -75,3 +75,26 @@ QString attr_physics::getCode() {
 bool attr_physics::verify_validity() {
     return !sb_velocity->text().isEmpty() && sb_velocity->value() >= 0 ;
 }
+
+bool attr_physics::load(const QJsonObject &json) {
+    attribute::load(json);
+    if(json.contains("fields")) {
+        QJsonObject fields = json.value("fields").toObject();
+        if(fields.contains("angle") && fields.contains("velocity")) {
+            sb_angle->setValue(fields.value("angle").toInt());
+            sb_velocity->setValue(fields.value("velocity").toInt());
+        } else
+            return false;
+    } else
+        return false;
+    return true;
+}
+
+QJsonObject attr_physics::save() {
+    QJsonObject o, fields;
+    o["type"] = "physics";
+    fields["angle"] = sb_angle->value();
+    fields["velocity"] = sb_velocity->value();
+    o["fields"] = fields;
+    return o;
+}

@@ -10,6 +10,9 @@ public:
     attr_spawner(entities_attributes_panel* container);
     virtual ~attr_spawner();
 
+    virtual bool load(const QJsonObject& json);
+    virtual QJsonObject save();
+
     virtual QString getCode();
     virtual bool verify_validity();
 

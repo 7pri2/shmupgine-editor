@@ -72,3 +72,22 @@ QPixmap attr_graphic_renderer::get_picture() {
 bool attr_graphic_renderer::verify_validity() {
     return true;
 }
+
+bool attr_graphic_renderer::load(const QJsonObject &json) {
+    attribute::load(json);
+    if(json.contains("fields")) {
+        QJsonObject fields = json.value("fields").toObject();
+        if(fields.contains("sprite")) {
+            le_sprite->setText(fields.value("sprite").toString());
+        }
+    } else
+        return false;
+    return true;
+}
+
+QJsonObject attr_graphic_renderer::save() {
+    QJsonObject o, fields;
+    fields["sprite"] = le_sprite->text();
+    o["fields"] = fields;
+    return o;
+}

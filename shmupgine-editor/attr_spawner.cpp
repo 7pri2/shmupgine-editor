@@ -43,3 +43,11 @@ void attr_spawner::update_tab_name(QString name) {
 bool attr_spawner::verify_validity() {
     return true;
 }
+
+bool attr_spawner::load(const QJsonObject &json) {
+
+}
+
+QJsonObject attr_spawner::save() {
+
+}

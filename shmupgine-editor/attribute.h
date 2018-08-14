@@ -8,6 +8,8 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include <QIntValidator>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #define CROSS_1 "\u2A09"
 #define CROSS_2 "\u2717"
@@ -24,6 +26,9 @@ public:
 
     void    setId_parent(int id);
     int     getId_parent();
+
+    virtual bool        load(const QJsonObject& json);
+    virtual QJsonObject save();
 
     // Code generation
     virtual QString getCode();

@@ -16,6 +16,9 @@ public:
     attr_graphic_renderer(entities_attributes_panel*);
     ~attr_graphic_renderer();
 
+    virtual bool load(const QJsonObject& json);
+    virtual QJsonObject save();
+
     virtual QString getCode();
     virtual bool verify_validity();
     QPixmap get_picture();

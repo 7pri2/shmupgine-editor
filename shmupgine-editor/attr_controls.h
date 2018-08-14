@@ -10,6 +10,9 @@ public:
     attr_controls(entities_attributes_panel*);
     ~attr_controls();
 
+    virtual bool load(const QJsonObject& json);
+    virtual QJsonObject save();
+
     virtual QString getCode();
     virtual bool verify_validity();
 

@@ -107,3 +107,11 @@ void attr_destructor::remove_group() {
 bool attr_destructor::verify_validity() {
     return true;
 }
+
+bool attr_destructor::load(const QJsonObject &json) {
+
+}
+
+QJsonObject attr_destructor::save() {
+
+}

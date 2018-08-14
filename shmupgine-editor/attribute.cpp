@@ -48,8 +48,6 @@ int attribute::getId_parent() {
 
 void attribute::delete_attribute() {
     close();
-    container->remove_attribute(this);
-    delete this;
 }
 
 QString attribute::getCode() {
@@ -65,4 +63,15 @@ QString attribute::get(QString get_attr) {
 
 bool attribute::verify_validity() {
     return false;
+}
+
+bool attribute::load(const QJsonObject &json) {
+    if(json.contains("enabled"))
+        cb_enabled->setChecked(json.value("enabled").toBool());
+}
+
+QJsonObject attribute::save() {
+    QJsonObject object;
+    object["enabled"] = cb_enabled->isChecked();
+    return object;
 }

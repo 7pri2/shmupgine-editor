@@ -11,6 +11,9 @@ public:
     attr_physics(entities_attributes_panel*);
     ~attr_physics();
 
+    virtual bool load(const QJsonObject& json);
+    virtual QJsonObject save();
+
     virtual QString getCode();
     virtual bool verify_validity();
 
